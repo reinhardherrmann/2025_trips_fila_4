@@ -26,6 +26,13 @@
                 </flux:navlist.group>
             </flux:navlist>
 
+            <flux:navlist variant="outline">
+                <flux:navlist.group :heading="__('Grundtabellen')" class="grid" expandable="true" collapsed="true">
+                    <flux:navlist.item icon="rectangle-stack" :href="route('brands.index')" :current="request()->routeIs('brands.index')" wire:navigate>{{ __('Handelsketten') }}</flux:navlist.item>
+                    <flux:navlist.item icon="chat-bubble-left-right"  wire:navigate>{{ __('Hersteller') }}</flux:navlist.item>
+                </flux:navlist.group>
+            </flux:navlist>
+
             <flux:spacer />
 
             <flux:navlist variant="outline">

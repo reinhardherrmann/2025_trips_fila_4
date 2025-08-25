@@ -21,4 +21,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
 });
 
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('manage-brands', \App\Livewire\Brands\ListBrands::class)->name('brands.index');
+});
+
 require __DIR__.'/auth.php';

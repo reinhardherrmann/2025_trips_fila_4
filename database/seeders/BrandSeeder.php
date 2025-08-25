@@ -30,7 +30,7 @@ class BrandSeeder extends Seeder
 
         Brand::create([
             'name' => 'anderer Markt',
-            'description' => 'keiner Handelskette',
+            'description' => 'keiner Handelskette zugeordnet',
             'remark' => 'automatisch generiert']);
 
     }
