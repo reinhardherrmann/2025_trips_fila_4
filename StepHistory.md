@@ -29,9 +29,6 @@ Sources: https://www.youtube.com/watch?v=FJ4jEN974-w
 - change Logo on Welcome.blade
 - change Logo and App Title on Sidebar
 ---
-
-
-
 ## Step 03 Create Component to List Brands
 Sources: https://www.youtube.com/watch?v=YXkhgq3z7DY&t=407s
 - create Component Brands/ListBrands
