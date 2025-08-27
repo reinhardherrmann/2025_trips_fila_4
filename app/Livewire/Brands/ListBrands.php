@@ -37,7 +37,8 @@ class ListBrands extends Component implements HasActions, HasSchemas, HasTable
             ->striped()
             ->columns([
                 ImageColumn::make('image')
-                    ->label('Logo'),
+                    ->label('Logo')
+                ->imageHeight(30),
                 TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
@@ -67,7 +68,7 @@ class ListBrands extends Component implements HasActions, HasSchemas, HasTable
                     ->icon('heroicon-o-plus')
                     ->color('success')
                     // TODO: Add correct Route to display the view form
-                    // ->url(fn(): string => route('brands.create'))
+                    ->url(fn(): string => route('brands.create'))
                     ->label('Handelskette erstellen'),
             ])
             ->recordActions([

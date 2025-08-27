@@ -4,68 +4,55 @@ namespace App\Livewire\Brands;
 
 use App\Models\Brand;
 use Filament\Actions\Action;
-use Filament\Schemas\Components\Section;
-use Filament\Support\Enums\Alignment;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Notifications\Notification;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Schemas\Schema;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
-class EditBrand extends Component implements HasActions, HasSchemas
+class CreateBrand extends Component implements HasActions, HasSchemas
 {
     use InteractsWithActions;
     use InteractsWithSchemas;
-
-    public Brand $record;
 
     public ?array $data = [];
 
     public function mount(): void
     {
-        // Fill form data but handle image field specially
-        $formData = $this->record->attributesToArray();
-
-        // Don't include image in initial fill, let it load separately
-        //unset($formData['image']);
-
-        $this->form->fill($formData);
-
-        //$this->form->fill($this->record->attributesToArray());
+        $this->form->fill();
     }
 
     public function form(Schema $schema): Schema
     {
-
         return $schema
             ->components([
-                Section::make('Handelskette bearbeiten')
-                    ->description('Bearbeiten der Handelskette')
+                Section::make('Neue Handelskette erstellen')
+                    ->description('Erstellen einer neuen Handelskette')
                     ->schema([
                         TextInput::make('name')
                             ->required(),
                         TextInput::make('description'),
                         FileUpload::make('image')
-                            ->label('Logo')
+                            ->image()
+                            ->disk('public')
                             ->directory('brands')
-                            ->visibility('public')
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/gif', 'image/svg+xml'])
                             ->deletable(true)
-                            ->image()
-                            ,
+                            ->visibility('public'),
                         Textarea::make('remark')
                             ->columnSpanFull(),
                     ])
 
             ])
             ->statePath('data')
-            ->model($this->record);
+            ->model(Brand::class);
     }
 
     public function cancelAction(): Action
@@ -84,29 +71,31 @@ class EditBrand extends Component implements HasActions, HasSchemas
             });
     }
 
-    public function save()
+
+    public function create()
     {
         $data = $this->form->getState();
 
-        $this->record->update($data);
+        //dd($data);
+        $record = Brand::create($data);
 
-        // Flash-Message setzen, statt ->with() zu verwenden
-        // session()->flash('success', 'Handelskette erfolgreich geändert');
+        $this->form->model($record)->saveRelationships();
 
         Notification::make()
-            ->title('Handelskette ändern')
+            ->title('Handelskette erstellen')
             ->success()
-            ->body("Handelskette " . $this->record->name . " erfolgreich geändert")
+            ->body("Handelskette " . $record->name . " erfolgreich erstellt.")
             ->duration(2000)
             ->send();
         // Livewire-Redirector zurückgeben
         return $this->redirectRoute('brands.index');
 
 
+
     }
 
     public function render(): View
     {
-        return view('livewire.brands.edit-brand');
+        return view('livewire.brands.create-brand');
     }
 }

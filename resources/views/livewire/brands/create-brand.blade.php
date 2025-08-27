@@ -1,6 +1,6 @@
 <div>
 
-    <form wire:submit="save" class="mt-6">
+    <form wire:submit="create">
         {{ $this->form }}
 
         <div class="mt-5">
@@ -15,6 +15,7 @@
                 Abbruch
             </flux:button>
 
+
             <flux:button variant="primary" color="green"
                          class="ms-3"
                          type="submit">Speichern
@@ -23,5 +24,5 @@
 
     </form>
 
-    <x-filament-actions::modals/>
+    <x-filament-actions::modals />
 </div>

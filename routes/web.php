@@ -28,6 +28,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('manage-brands', ListBrands::class)->name('brands.index');
     Route::get('brands/', ListBrands::class)->name('brands.index');
     Route::get('edit-brand/{record}', EditBrand::class)->name('brands.edit');
+    Route::get('create-brand', CreateBrand::class)->name('brands.create');
 });
 
 require __DIR__.'/auth.php';

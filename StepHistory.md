@@ -19,7 +19,16 @@
 
 
 
-
+## Step 06 Create Component CreateBrand
+Sources: https://www.youtube.com/watch?v=YXkhgq3z7DY&t=407s
+- use command " php artisan make:filament-livewire-form Brands/CreateBrand --generate"
+- created all form fields
+- added path to store images
+- added Notification for success and error
+- added button to save and cancel edit
+- added Confirmation for Cancelling Edit or Create
+- published livewire confirmation
+---
 ## Step 05 Create Component CreateBrand
 Sources: https://www.youtube.com/watch?v=YXkhgq3z7DY&t=407s
     and https://filamentphp.com/docs/4.x/components/form
