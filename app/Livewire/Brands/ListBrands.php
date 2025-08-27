@@ -66,8 +66,8 @@ class ListBrands extends Component implements HasActions, HasSchemas, HasTable
                 Action::make('create')
                     ->icon('heroicon-o-plus')
                     ->color('success')
-                    // TODO: Add correct Route to display the create form
-                    //->url(fn(): string => route('brands.create'))
+                    // TODO: Add correct Route to display the view form
+                    // ->url(fn(): string => route('brands.create'))
                     ->label('Handelskette erstellen'),
             ])
             ->recordActions([
@@ -76,14 +76,14 @@ class ListBrands extends Component implements HasActions, HasSchemas, HasTable
                     ->icon('heroicon-o-eye')
                     ->color('info')
                 // TODO: Add correct Route to display the view form
-                //->url(fn(): string => route('brands.create'))
+                //->url(fn(): string => route('brands.edit'))
                 ,
                 Action::make('edit')
                     ->iconButton()
                     ->icon('heroicon-o-pencil-square')
                     ->color('success')
                 // TODO: Add correct Route to display the view form
-                //->url(fn(): string => route('brands.edit'))
+                ->url(fn(Brand $record): string => route('brands.edit',$record))
                 ,
                 Action::make('delete')
                     ->iconButton()

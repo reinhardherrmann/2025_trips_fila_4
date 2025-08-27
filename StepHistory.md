@@ -20,7 +20,16 @@
 
 
 
-
+## Step 05 Create Component CreateBrand
+Sources: https://www.youtube.com/watch?v=YXkhgq3z7DY&t=407s
+    and https://filamentphp.com/docs/4.x/components/form
+- create Livewire Component CreateBrand
+- add Route to display CreateBrand
+- add Form to CreateBrand
+- add Validation
+- add Flashmessage for Success and Error
+- add Button to Save and Cancel Edit
+---
 ## Step 04 Change Theme
 Sources: https://www.youtube.com/watch?v=FJ4jEN974-w
 - changed theme accordingly to Video

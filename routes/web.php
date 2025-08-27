@@ -1,5 +1,8 @@
 <?php
 
+use App\Livewire\Brands\CreateBrand;
+use App\Livewire\Brands\EditBrand;
+use App\Livewire\Brands\ListBrands;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
@@ -22,7 +25,9 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('manage-brands', \App\Livewire\Brands\ListBrands::class)->name('brands.index');
+    Route::get('manage-brands', ListBrands::class)->name('brands.index');
+    Route::get('brands/', ListBrands::class)->name('brands.index');
+    Route::get('edit-brand/{record}', EditBrand::class)->name('brands.edit');
 });
 
 require __DIR__.'/auth.php';
