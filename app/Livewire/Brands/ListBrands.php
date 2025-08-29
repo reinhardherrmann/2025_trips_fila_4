@@ -8,6 +8,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Actions\CreateAction;
+use Filament\Actions\RestoreAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
@@ -17,6 +18,7 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
@@ -61,7 +63,11 @@ class ListBrands extends Component implements HasActions, HasSchemas, HasTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                Filter::make('deleted_at')
+                    ->modifyBaseQueryUsing(function ($query){
+                        return $query->onlyTrashed();
+                    })
+                // ...
             ])
             ->headerActions([
                 Action::make('create')
@@ -71,6 +77,7 @@ class ListBrands extends Component implements HasActions, HasSchemas, HasTable
                     ->url(fn(): string => route('brands.create'))
                     ->label('Handelskette erstellen'),
             ])
+
             ->recordActions([
                 Action::make('view')
                     ->iconButton()
@@ -110,6 +117,7 @@ class ListBrands extends Component implements HasActions, HasSchemas, HasTable
                             ->body('Löschen der Handelskette fehlgeschlagen')
                             ->danger()
                     ),
+                RestoreAction::make(),
 
             ])
             ->toolbarActions([

@@ -18,7 +18,12 @@
 
 
 
-
+## Step 07 Make Filter for ListBrands
+Sources: none
+- add Filter to Brands/ListBrands
+- handle Filter in ListBrands
+- added empty file ToDo-List.md to keep track of what to do
+---
 ## Step 06 Create Component CreateBrand
 Sources: https://www.youtube.com/watch?v=YXkhgq3z7DY&t=407s
 - use command " php artisan make:filament-livewire-form Brands/CreateBrand --generate"
