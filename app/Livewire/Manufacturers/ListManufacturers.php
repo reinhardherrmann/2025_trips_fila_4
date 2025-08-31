@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Livewire\Brands;
+namespace App\Livewire\Manufacturers;
 
 use App\Models\Brand;
+use App\Models\Manufacturer;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
-use Filament\Actions\CreateAction;
 use Filament\Actions\RestoreAction;
 use Filament\Actions\ViewAction;
-use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Contracts\HasSchemas;
@@ -24,7 +23,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 
-class ListBrands extends Component implements HasActions, HasSchemas, HasTable
+class ListManufacturers extends Component implements HasActions, HasSchemas, HasTable
 {
     use InteractsWithActions;
     use InteractsWithTable;
@@ -33,32 +32,29 @@ class ListBrands extends Component implements HasActions, HasSchemas, HasTable
     public function table(Table $table): Table
     {
         return $table
-            ->heading('Übersicht der Handelsketten')
-            ->description('Anzeige aller gespeicherten Handelsketten')
-            ->query(fn(): Builder => Brand::query())
-            ->striped()
+            ->heading('Übersicht der LKW Hersteller')
+            ->description('Anzeige aller gespeicherten Hersteller')
+            ->query(fn (): Builder => Manufacturer::query())
             ->columns([
                 ImageColumn::make('image')
-                    ->label('Logo')
+                ->label('Logo')
                 ->imageHeight(30),
                 TextColumn::make('name')
+                    ->label('Name')
                     ->searchable()
-                    ->sortable(),
+                ->sortable(),
                 TextColumn::make('description')
+                    ->label('Beschreibung')
                     ->limit(30)
-                    ->wrap()
-                    ->searchable()
-                    ->label('Beschreibung'),
-                TextColumn::make('remark')
-                    ->label('Bemerkung')
-                    ->limit(50)
-                    ->wrap(),
+                    ->searchable(),
                 TextColumn::make('created_at')
-                    ->dateTime(format: 'd.m.Y')
+                    ->label('Erstellt am')
+                    ->dateTime('d.m.Y')
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->toggleable(isToggledHiddenByDefault: false),
                 TextColumn::make('updated_at')
-                    ->dateTime(format: 'd.m.Y')
+                    ->label('geändert am')
+                    ->dateTime('d.m.Y')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
@@ -67,58 +63,49 @@ class ListBrands extends Component implements HasActions, HasSchemas, HasTable
                     ->modifyBaseQueryUsing(function ($query){
                         return $query->onlyTrashed();
                     })
-                // ...
             ])
             ->headerActions([
                 Action::make('create')
                     ->icon('heroicon-o-plus')
                     ->color('success')
                     // TODO: Add correct Route to display the view form
-                    ->url(fn(): string => route('brands.create'))
-                    ->label('Neue Handelskette'),
+                    //->url(fn(): string => route('brands.create'))
+                    ->label('Neuen Hersteller erstellen'),
             ])
-
             ->recordActions([
-                Action::make('view')
-                    ->iconButton()
-                    ->icon('heroicon-o-eye')
-                    ->color('info')
-                // TODO: Add correct Route to display the view form
-                //->url(fn(): string => route('brands.edit'))
-                ,
+                ViewAction::make(),
                 Action::make('edit')
                     ->iconButton()
                     ->icon('heroicon-o-pencil-square')
                     ->color('success')
-                // TODO: Add correct Route to display the view form
-                ->url(fn(Brand $record): string => route('brands.edit',$record))
+                    // TODO: Add correct Route to display the view form
+                   // ->url(fn(Manufacturer $record): string => route('brands.edit',$record))
                 ,
                 Action::make('delete')
                     ->iconButton()
                     ->requiresConfirmation()
                     ->modalHeading('Löschen bestätigen')
-                    ->modalDescription('Soll die Handelskette gelöscht werden?')
+                    ->modalDescription('Soll der Hersteller gelöscht werden?')
                     ->modalCancelActionLabel('Abbrechen')
                     ->modalSubmitActionLabel('Löschen')
                     ->color('danger')
                     ->icon('heroicon-o-trash')
-                    ->action(function (Brand $record) {
+                    ->action(function (Manufacturer $record) {
                         $record->delete();
                     })
                     ->successNotification(
                         Notification::make()
-                            ->title('Handelskette löschen')
-                            ->body('Handelskette erfolgreich gelöscht')
+                            ->title('Hersteller löschen')
+                            ->body('Hersteller erfolgreich gelöscht')
                             ->success()
                     )
                     ->failureNotification(
                         Notification::make()
-                            ->title('Handelskette löschen')
-                            ->body('Löschen der Handelskette fehlgeschlagen')
+                            ->title('Hersteller löschen')
+                            ->body('Löschen des Herstellers fehlgeschlagen')
                             ->danger()
                     ),
                 RestoreAction::make(),
-
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
@@ -129,6 +116,6 @@ class ListBrands extends Component implements HasActions, HasSchemas, HasTable
 
     public function render(): View
     {
-        return view('livewire.brands.list-brands');
+        return view('livewire.manufacturers.list-manufacturers');
     }
 }

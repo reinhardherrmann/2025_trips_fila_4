@@ -17,7 +17,17 @@
 
 
 
-
+## Step 08 Make LivewireTable for Manufacturers
+Sources: https://www.youtube.com/watch?v=YXkhgq3z7DY&t=11079s
+- use command " php artisan make:livewire-table Manufacturers/LivewireTable --generate"
+- adapt the Columns to be displayed
+- change Link in Sidebar to Manufacturers/LivewireTable
+- add Route to display Manufacturers/LivewireTable
+- add Filter to display only Manufacturers with softDeletes = true
+- add RowAction to view Manufacturer
+- add RowAction to delete Manufacturer
+- add RowAction to edit Manufacturer
+---
 ## Step 07 Make Filter for ListBrands
 Sources: none
 - add Filter to Brands/ListBrands
