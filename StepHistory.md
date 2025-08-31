@@ -15,8 +15,11 @@
 
 
 
-
-
+## Step 09 Make Component to Create Manufacturer
+Sources: 
+- use command " php artisan make:livewire-table Manufacturers/LivewireTable --generate"
+- 
+---
 ## Step 08 Make LivewireTable for Manufacturers
 Sources: https://www.youtube.com/watch?v=YXkhgq3z7DY&t=11079s
 - use command " php artisan make:livewire-table Manufacturers/LivewireTable --generate"
