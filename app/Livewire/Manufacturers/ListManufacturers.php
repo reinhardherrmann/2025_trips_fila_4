@@ -69,7 +69,7 @@ class ListManufacturers extends Component implements HasActions, HasSchemas, Has
                     ->icon('heroicon-o-plus')
                     ->color('success')
                     // TODO: Add correct Route to display the view form
-                    //->url(fn(): string => route('brands.create'))
+                    ->url(fn(): string => route('manufacturers.create'))
                     ->label('Neuen Hersteller erstellen'),
             ])
             ->recordActions([

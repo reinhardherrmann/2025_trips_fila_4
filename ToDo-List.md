@@ -7,7 +7,7 @@
 ## Component Manufacturer
 
 * [X]  create Component to List Manufacturers
-* [ ]  create Component to Create Manufacturer
+* [x]  create Component to Create Manufacturer
 * [ ]  create Component to Edit Manufacturer
 * [ ]  create Soft-Delete to Manufacturers and to restore it
 * [ ]  create Component to View Manufacturer

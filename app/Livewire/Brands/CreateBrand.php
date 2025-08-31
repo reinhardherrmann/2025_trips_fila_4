@@ -40,6 +40,7 @@ class CreateBrand extends Component implements HasActions, HasSchemas
                             ->required(),
                         TextInput::make('description'),
                         FileUpload::make('image')
+                            ->label('Logo')
                             ->image()
                             ->disk('public')
                             ->directory('brands')

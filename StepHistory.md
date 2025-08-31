@@ -17,12 +17,17 @@
 
 ## Step 09 Make Component to Create Manufacturer
 Sources: 
-- use command " php artisan make:livewire-table Manufacturers/LivewireTable --generate"
-- 
+- use command " php artisan make:filament-livewire-form Manufacturers/CreateManufacturer --generate"
+- Made Form with Validation
+- added Notification for Success and Error
+- added Button to Save and Cancel Edit
+- added Confirmation for Cancelling Edit or Create
+- added Validation
+- added Flashmessage for Success and Error
 ---
 ## Step 08 Make LivewireTable for Manufacturers
 Sources: https://www.youtube.com/watch?v=YXkhgq3z7DY&t=11079s
-- use command " php artisan make:livewire-table Manufacturers/LivewireTable --generate"
+- use command " php artisan make:livewire-table Manufacturers/ListManufacturers --generate"
 - adapt the Columns to be displayed
 - change Link in Sidebar to Manufacturers/LivewireTable
 - add Route to display Manufacturers/LivewireTable
