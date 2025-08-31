@@ -8,8 +8,8 @@
 
 * [X]  create Component to List Manufacturers
 * [x]  create Component to Create Manufacturer
-* [ ]  create Component to Edit Manufacturer
-* [ ]  create Soft-Delete to Manufacturers and to restore it
+* [x]  create Component to Edit Manufacturer
+* [x]  create Soft-Delete to Manufacturers and to restore it
 * [ ]  create Component to View Manufacturer
 
 ## Component Trucks

@@ -79,7 +79,7 @@ class ListManufacturers extends Component implements HasActions, HasSchemas, Has
                     ->icon('heroicon-o-pencil-square')
                     ->color('success')
                     // TODO: Add correct Route to display the view form
-                   // ->url(fn(Manufacturer $record): string => route('brands.edit',$record))
+                   ->url(fn(Manufacturer $record): string => route('manufacturer.edit',$record))
                 ,
                 Action::make('delete')
                     ->iconButton()

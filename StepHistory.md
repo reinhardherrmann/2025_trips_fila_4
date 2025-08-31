@@ -14,10 +14,20 @@
 
 
 
-
+## Step 10 Make Component to Edit Manufacturer
+Sources: none
+- use command "php artisan make:filament-livewire-form Manufacturers/EditManufacturer --edit"
+- Created Form with Validation
+- added Notification for Success and Error
+- added Button to Save and Cancel Edit
+- added Confirmation for Cancelling Edit or Create
+- added Validation
+- added Flashmessage for Success and Error
+- added Route to display EditManufacturer
+---
 ## Step 09 Make Component to Create Manufacturer
-Sources: 
-- use command " php artisan make:filament-livewire-form Manufacturers/CreateManufacturer --generate"
+Sources: none
+- use command "php artisan make:filament-livewire-form Manufacturers/CreateManufacturer --generate"
 - Made Form with Validation
 - added Notification for Success and Error
 - added Button to Save and Cancel Edit
