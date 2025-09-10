@@ -13,7 +13,10 @@
 
 
 
-
+## Step 11 install Laradumps
+Source: https://laradumps.dev/get-started/installation.html
+- installed Laradumps
+---
 ## Step 10 Make Component to Edit Manufacturer
 Sources: none
 - use command "php artisan make:filament-livewire-form Manufacturers/EditManufacturer --edit"

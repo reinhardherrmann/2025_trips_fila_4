@@ -125,6 +125,7 @@ class ListBrands extends Component implements HasActions, HasSchemas, HasTable
                     //
                 ]),
             ]);
+
     }
 
     public function render(): View
