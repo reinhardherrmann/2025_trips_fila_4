@@ -9,6 +9,7 @@ use App\Livewire\Manufacturers\ListManufacturers;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
+use App\Livewire\Trucks\ListTrucks;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -37,6 +38,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('manufacturers/', ListManufacturers::class)->name('manufacturers.index');
     Route::get('create-manufacturer', CreateManufacturer::class)->name('manufacturers.create');
     Route::get('edit-manufacturer/{record}', EditManufacturer::class)->name('manufacturer.edit');
+
+    // Routes to manage Trucks
+    Route::get('trucks/', ListTrucks::class)->name('trucks.index');
 
 });
 

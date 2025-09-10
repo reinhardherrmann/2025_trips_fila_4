@@ -12,7 +12,18 @@
 
 
 
-
+## Step 12 Make Cokmponent to List Trucks 
+Sources: none
+- create Route to show List of Trucks
+- add Link to sidebar
+- create Livewire Component to show List of Trucks
+- Add Softdeletes to Truck Model
+- Add Table descriptions
+- Add Delete Action
+- Add custom Confirmation Dialog
+- Add Flashmessage for Success and Error
+- Add Button to Create Truck
+---
 ## Step 11 install Laradumps
 Source: https://laradumps.dev/get-started/installation.html
 - installed Laradumps
@@ -40,7 +51,7 @@ Sources: none
 ---
 ## Step 08 Make LivewireTable for Manufacturers
 Sources: https://www.youtube.com/watch?v=YXkhgq3z7DY&t=11079s
-- use command " php artisan make:livewire-table Manufacturers/ListManufacturers --generate"
+- use command "php artisan make:livewire-table Manufacturers/ListManufacturers --generate"
 - adapt the Columns to be displayed
 - change Link in Sidebar to Manufacturers/LivewireTable
 - add Route to display Manufacturers/LivewireTable
