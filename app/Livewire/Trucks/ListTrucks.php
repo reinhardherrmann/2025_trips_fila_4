@@ -36,6 +36,7 @@ class ListTrucks extends Component implements HasActions, HasSchemas, HasTable
         return $table
             ->heading("Übersicht der LKW und Trailer")
             ->description("Anzeige aller gespeicherten LKW und Trailer")
+            // Base query shows all trucks; use filter to show only manufacturer_id = 3 when desired
             ->query(fn (): Builder => Truck::query())
             ->columns([
                 ImageColumn::make('image'),
@@ -54,12 +55,13 @@ class ListTrucks extends Component implements HasActions, HasSchemas, HasTable
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('licence_plate')
                     ->label('Kennzeichen')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('capacity')
                     ->label('Kapazität')
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('trailer.trailer_number')
+                TextColumn::make('trailer.licence_plate')
                     ->label('Trailer-Nr.')
                     ->numeric()
                     ->sortable()
@@ -86,20 +88,25 @@ class ListTrucks extends Component implements HasActions, HasSchemas, HasTable
             ])
             ->filters([
                 Filter::make('deleted_at')
+                    ->label('gelöschte Fahrzeuge')
                     ->modifyBaseQueryUsing(function ($query){
                         return $query->onlyTrashed();
+                    }),
+                Filter::make('manufacturer_id')
+                    ->label('Nur Trailer anzeigen')
+                    ->modifyBaseQueryUsing(function ($query) {
+                        return $query->where('manufacturer_id', '=', 3);
                     })
             ])
             ->headerActions([
                 Action::make('create')
                     ->icon('heroicon-o-plus')
                     ->color('success')
-                    // TODO: Add correct Route to display the view form
-                    //->url(fn(): string => route('trucks.create'))
+                    ->url(fn(): string => route('trucks.create'))
                     ->label('Neues Fahrzeug erstellen'),
             ])
             ->recordActions([
-                ViewAction::make(),
+                //ViewAction::make(),
                 Action::make('edit')
                     ->iconButton()
                     ->icon('heroicon-o-pencil-square')

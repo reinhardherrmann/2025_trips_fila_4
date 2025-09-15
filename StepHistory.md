@@ -1,18 +1,21 @@
+## Step 13 Make Component to Create a New Truck
 
+Sources: none
 
+- use Command "php artisan make:filament-livewire-form Trucks/CreateTruck --generate"
+- create Component Trucks/CreateTruck
+- add Route to display CreateTruck
+- add Form to CreateTruck
+- add Validation with custom Messages
+- add Flashmessage for Success and Error
+- add Button to Save and Cancel Creation
+- add Confirmation for Cancelling Edit or Create
+- added Filter to ListTrucks to only show Trailers
 
+---
 
+## Step 12 Make Component to List Trucks
 
-
-
-
-
-
-
-
-
-
-## Step 12 Make Cokmponent to List Trucks 
 Sources: none
 - create Route to show List of Trucks
 - add Link to sidebar
