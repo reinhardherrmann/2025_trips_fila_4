@@ -2,6 +2,7 @@
 
 Sources: none
 
+- use command "php artisan make:filament-livewire-form Trucks/EditTruck --edit"
 - Change ListTrucks to initially show no Trailers
 - Add Component Trucks/EditTruck
 - Add Route to display EditTruck
@@ -10,9 +11,8 @@ Sources: none
 - Add Validation with custom Messages
 - Add Flashmessage for Success and Error
 - Add Button to Save and Cancel Edit
-- Add Confirmation for Cancelling Edit or Create
--
-
+- Add Confirmation for Cancelling Creation
+- install laravel debugbar
 ---
 ## Step 13 Make Component to Create a New Truck
 Sources: none

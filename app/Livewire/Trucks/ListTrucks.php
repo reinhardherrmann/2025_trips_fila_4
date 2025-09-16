@@ -106,13 +106,16 @@ class ListTrucks extends Component implements HasActions, HasSchemas, HasTable
                     ->label('Neues Fahrzeug erstellen'),
             ])
             ->recordActions([
-                //ViewAction::make(),
+                Action::make('view')
+                    ->iconButton()
+                    ->icon('heroicon-o-eye')
+                    ->color('info'),
                 Action::make('edit')
                     ->iconButton()
                     ->icon('heroicon-o-pencil-square')
                     ->color('success')
                     // TODO: Add correct Route to display the view form
-                    //->url(fn(Manufacturer $record): string => route('trucks.edit',$record))
+                    ->url(fn(Truck $record): string => route('truck.edit', $record))
                 ,
                 Action::make('delete')
                     ->iconButton()

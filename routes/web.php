@@ -10,6 +10,7 @@ use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Trucks\CreateTruck;
+use App\Livewire\Trucks\EditTruck;
 use App\Livewire\Trucks\ListTrucks;
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +44,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Routes to manage Trucks
     Route::get('trucks/', ListTrucks::class)->name('trucks.index');
     Route::get('create-truck', CreateTruck::class)->name('trucks.create');
+    Route::get('edit-truck/{record}', EditTruck::class)->name('truck.edit');
 
 });
 
