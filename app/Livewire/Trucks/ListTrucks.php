@@ -10,7 +10,14 @@ use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Actions\RestoreAction;
 use Filament\Actions\ViewAction;
+use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\Section as FormsSection;
+use Filament\Forms\Components\Tabs as FormsTabs;
+use Filament\Forms\Components\Tabs\Tab as FormsTab;
 use Filament\Notifications\Notification;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Tables\Columns\IconColumn;
@@ -117,10 +124,87 @@ class ListTrucks extends Component implements HasActions, HasSchemas, HasTable
                     ->label('Neues Fahrzeug erstellen'),
             ])
             ->recordActions([
+
                 Action::make('view')
                     ->iconButton()
                     ->icon('heroicon-o-eye')
-                    ->color('info'),
+                    ->color('info')
+                    ->modalHeading('Fahrzeug anzeigen')
+                    ->modalDescription('Anzeige der Fahrzeugdaten im Detail')
+                    ->stickyModalHeader()
+                    ->stickyModalFooter()
+                    ->modalSubmitAction(false)
+                    ->modalCancelActionLabel('Schließen')
+                    ->form(function (Truck $record): array {
+                        $trailerLabel = $record->trailer
+                            ? trim(($record->trailer->truck_number ? ('#' . str_pad((string)$record->trailer->truck_number, 4, '0', STR_PAD_LEFT)) : '') . ' ' . ($record->trailer->licence_plate ?? ''))
+                            : '—';
+
+                        return [
+//                            Section::make('Fahrzeugdaten')
+//                                ->description('Gleiche Struktur wie im Bearbeiten-Dialog'),
+                            Tabs::make('Fahrzeugdaten')
+                                ->tabs([
+                                    Tab::make('Allgemein')
+                                        ->columns(2)
+                                        ->schema([
+                                            Placeholder::make('manufacturer_name')
+                                                ->label('Hersteller')
+                                                ->content($record->manufacturer?->name ?? '—'),
+                                            Placeholder::make('type')
+                                                ->label('Fahrzeugtyp')
+                                                ->content($record->type ?? '—'),
+                                            Placeholder::make('truck_number')
+                                                ->label('Fahrzeug-Nr.')
+                                                ->content($record->truck_number !== null ? str_pad((string)$record->truck_number, 4, '0', STR_PAD_LEFT) : '—'),
+                                            Placeholder::make('licence_plate')
+                                                ->label('Kennzeichen')
+                                                ->content($record->licence_plate ?? '—'),
+                                            Placeholder::make('capacity')
+                                                ->label('Kapazität')
+                                                ->content($record->capacity !== null ? (string)$record->capacity : '—'),
+                                            Placeholder::make('weight')
+                                                ->label('Gewicht in kg')
+                                                ->content($record->weight !== null ? (string)$record->weight : '—'),
+                                            Placeholder::make('height')
+                                                ->label('Höhe in cm')
+                                                ->content($record->height !== null ? (string)$record->height : '—'),
+                                            Placeholder::make('trailer_id')
+                                                ->label('Trailer-Nummer')
+                                                ->content($trailerLabel),
+                                            Placeholder::make('is_active')
+                                                ->label('Aktiv')
+                                                ->content($record->is_active ? 'Ja' : 'Nein'),
+                                        ]),
+                                    Tab::make('Erweitert')
+                                        ->schema([
+                                            Placeholder::make('remark')
+                                                ->label('Bemerkung')
+                                                ->content($record->remark ?? '—')
+                                                ->columnSpanFull(),
+                                        ]),
+                                    Tab::make('Bild')
+                                        ->schema([
+                                            Placeholder::make('image')
+                                                ->label('Bild')
+                                                ->content($record->image ? (string)$record->image : '—')
+                                                ->columnSpanFull(),
+                                        ]),
+                                ]),
+                        ];
+                    })
+                    ->modalActions([
+                        Action::make('edit')
+                            ->label('Bearbeiten')
+                            ->icon('heroicon-o-pencil-square')
+                            ->color('success')
+                            ->url(fn(Truck $record): string => route('truck.edit', $record)),
+                        Action::make('close')
+                            ->label('Schließen')
+                            ->color('gray')
+                            ->close(),
+                    ]),
+
                 Action::make('edit')
                     ->iconButton()
                     ->icon('heroicon-o-pencil-square')

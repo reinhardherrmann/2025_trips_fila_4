@@ -27,7 +27,7 @@
             </flux:navlist>
 
             <flux:navlist variant="outline">
-                <flux:navlist.group :heading="__('Grundtabellen')" class="grid" expandable="true" collapsed="true">
+                <flux:navlist.group :heading="__('Grundtabellen')" class="grid" :expanable="true" :collapsed="true">
                     <flux:navlist.item icon="rectangle-stack" :href="route('brands.index')" :current="request()->routeIs('brands.index')" wire:navigate>{{ __('Handelsketten') }}</flux:navlist.item>
                     <flux:navlist.item icon="chat-bubble-left-right"  :href="route('manufacturers.index')" :current="request()->routeIs('manufacturers.index')" wire:navigate>{{ __('Hersteller') }}</flux:navlist.item>
                     <flux:navlist.item icon="truck"  :href="route('trucks.index')" :current="request()->routeIs('trucks.index')" wire:navigate>{{ __('LKW und Trailer') }}</flux:navlist.item>

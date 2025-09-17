@@ -1,14 +1,20 @@
+## Step 16 Make Component to view Truck Data
+
+Sources: Junie
+
+- make ViewAction as Modal
+- show all data in modal
+- add Link to edit shown Dataset
+
+---
 ## Step 15 Make Filter to List Trucks, or Trailers or all
-
 Sources: none
-
 - Changed query to display Trucks
 - added TernaryFilter to ListTrucks:
     - show all Trucks if no filter is selected
     - show Trucks only as default
     - show Trailers, if wanted
     - Add change to display truck_number with leading zeroes
-
 ---
 ## Step 14 Make Component to edit Truck
 Sources: none
@@ -165,3 +171,14 @@ Sources: none
 
 ---
 
+## Step 18 Add View modal with tabbed layout for Trucks
+
+Sources: Junie
+
+- Added a View record action to app/Livewire/Trucks/ListTrucks.php.
+- The action opens a modal and renders a tabbed schema (Allgemein, Erweitert, Bild) mirroring EditTruck but fully
+  disabled (read-only).
+- Includes formatted truck_number with leading zeros, relationship selects disabled, and image preview read-only.
+- Modal has only a Close button, no submit.
+
+---
