@@ -19,6 +19,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
@@ -37,7 +38,7 @@ class ListTrucks extends Component implements HasActions, HasSchemas, HasTable
             ->heading("Übersicht der LKW und Trailer")
             ->description("Anzeige aller gespeicherten LKW und Trailer")
             // Base query shows all trucks; use filter to show only manufacturer_id = 3 when desired
-            ->query(fn(): Builder => Truck::query()->where('manufacturer_id', '!=', 3))
+            ->query(fn(): Builder => Truck::query()) //->where('manufacturer_id', '!=', 3))
             ->columns([
                 ImageColumn::make('image'),
                 TextColumn::make('manufacturer.name')
@@ -63,7 +64,6 @@ class ListTrucks extends Component implements HasActions, HasSchemas, HasTable
                     ->sortable(),
                 TextColumn::make('trailer.licence_plate')
                     ->label('Trailer-Nr.')
-                    ->numeric()
                     ->sortable()
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -92,11 +92,22 @@ class ListTrucks extends Component implements HasActions, HasSchemas, HasTable
                     ->modifyBaseQueryUsing(function ($query){
                         return $query->onlyTrashed();
                     }),
-                Filter::make('manufacturer_id')
-                    ->label('Nur Trailer anzeigen')
-                    ->modifyBaseQueryUsing(function ($query) {
-                        return $query->where('manufacturer_id', '=', 3);
-                    })
+                TernaryFilter::make('trailer_toggle')
+                    ->label('Anzeige')
+                    ->trueLabel('Nur LKW')
+                    ->falseLabel('Nur Trailer')
+                    ->placeholder('Alle')
+                    ->default('false')
+                    ->queries(
+                        false: fn(Builder $query) => $query->where('manufacturer_id', 3),
+                        true: fn(Builder $query) => $query->where('manufacturer_id', '!=', 3),
+                        blank: fn(Builder $query) => $query,
+                    )
+//                Filter::make('manufacturer_id')
+//                    ->label('Nur Trailer anzeigen')
+//                    ->modifyBaseQueryUsing(function ($query) {
+//                        Truck::query()->where('manufacturer_id', '=', 3);
+//                    })
             ])
             ->headerActions([
                 Action::make('create')
@@ -126,7 +137,7 @@ class ListTrucks extends Component implements HasActions, HasSchemas, HasTable
                     ->modalSubmitActionLabel('Löschen')
                     ->color('danger')
                     ->icon('heroicon-o-trash')
-                    ->action(function (Manufacturer $record) {
+                    ->action(function (Truck $record) {
                         $record->delete();
                     })
                     ->successNotification(

@@ -3,6 +3,7 @@
 namespace App\Livewire\Trucks;
 
 use App\Models\Truck;
+use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\FileUpload;
@@ -61,8 +62,23 @@ class EditTruck extends Component implements HasActions, HasSchemas
                                 TextInput::make('truck_number')
                                     ->label('Fahrzeug-Nr.*')
                                     ->required()
-                                    ->numeric()
                                     ->length(4)
+                                    ->formatStateUsing(function ($state) {
+                                        if ($state === null || $state === '') {
+                                            return $state;
+                                        }
+                                        $num = (int)$state;
+                                        ds(str_pad((string)$num, 4, '0', STR_PAD_LEFT));
+                                        return str_pad((string)$num, 4, '0', STR_PAD_LEFT);
+
+                                    })
+                                    ->dehydrateStateUsing(function ($state) {
+                                        if ($state === null || $state === '') {
+                                            return null;
+                                        }
+                                        // Remove leading zeros and cast back to int for storage
+                                        return (int)ltrim((string)$state, '0');
+                                    })
                                     ->validationMessages([
                                         'required' => 'Die Fahrzeugnummer ist ein Pflichtfeld.',
                                         'numeric' => 'Es sind nur Ziffern erlaubt.'
@@ -106,7 +122,7 @@ class EditTruck extends Component implements HasActions, HasSchemas
                                     ->default(true)
                                     ->required(),
                             ]),
-                        Tab::make('Erweiter')
+                        Tab::make('Erweitert')
                             ->schema([
                                 Textarea::make('remark')
                                     ->label('Bemerkung')
@@ -124,11 +140,30 @@ class EditTruck extends Component implements HasActions, HasSchemas
             ->model($this->record);
     }
 
-    public function save(): void
+    public function cancelAction(): Action
+    {
+        return Action::make('cancel')
+            ->label('Abbruch')
+            ->color('danger')
+            ->icon('heroicon-o-x-circle')
+            ->requiresConfirmation()
+            ->modalHeading('Vorgang abbrechen?')
+            ->modalDescription('Nicht gespeicherte Änderungen gehen verloren. Möchten Sie wirklich abbrechen?')
+            ->modalSubmitActionLabel('Ja, abbrechen')
+            ->modalCancelActionLabel('Weiter bearbeiten')
+            ->action(function (): void {
+                $this->redirectRoute('trucks.index');
+            });
+    }
+
+    public function save()
     {
         $data = $this->form->getState();
-
+        ds($data);
         $this->record->update($data);
+
+        // Livewire-Redirector zurückgeben
+        return $this->redirectRoute('trucks.index');
     }
 
     public function render(): View

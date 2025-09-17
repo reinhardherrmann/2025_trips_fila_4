@@ -14,7 +14,7 @@ class Truck extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'manufacturer_id', 'trailer_id', 'truck_number', 'type', 'licence_plate', 'capacity', 'is_active', 'remark', 'image'
+        'manufacturer_id', 'trailer_id', 'truck_number', 'type', 'licence_plate', 'capacity', 'height', 'weight', 'is_active', 'remark', 'image'
     ];
 
     public function manufacturer(): BelongsTo

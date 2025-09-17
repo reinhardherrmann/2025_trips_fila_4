@@ -1,7 +1,17 @@
-## Step 14 Make Component to edit Truck
+## Step 15 Make Filter to List Trucks, or Trailers or all
 
 Sources: none
 
+- Changed query to display Trucks
+- added TernaryFilter to ListTrucks:
+    - show all Trucks if no filter is selected
+    - show Trucks only as default
+    - show Trailers, if wanted
+    - Add change to display truck_number with leading zeroes
+
+---
+## Step 14 Make Component to edit Truck
+Sources: none
 - use command "php artisan make:filament-livewire-form Trucks/EditTruck --edit"
 - Change ListTrucks to initially show no Trailers
 - Add Component Trucks/EditTruck
@@ -131,3 +141,27 @@ Sources: none
 - create some seeders
 - designed models 
 ---
+
+## Step 16 Fix saving weight and height in EditTruck
+
+Sources: none
+
+- Root cause: Truck model did not include 'height' and 'weight' in $fillable, so mass assignment via update() ignored
+  them.
+- Fix: Added 'height' and 'weight' to App\Models\Truck::$fillable.
+- Verified EditTruck form already has TextInputs for weight and height and save() calls update($data).
+
+---
+
+## Step 17 Show truck_number with leading zeroes in EditTruck
+
+Sources: none
+
+- Requirement: Display truck number with leading zeroes (max 4 digits) in the EditTruck form.
+- Change: In app/Livewire/Trucks/EditTruck.php, updated TextInput('truck_number') to use:
+    - formatStateUsing() to display padded value (e.g., 7 -> 0007).
+    - dehydrateStateUsing() to strip leading zeros and cast to int when saving.
+- Notes: Keeps DB storage as integer while improving display formatting.
+
+---
+
