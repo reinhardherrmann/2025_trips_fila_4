@@ -10,8 +10,10 @@ use Filament\Actions\Contracts\HasActions;
 use Filament\Actions\CreateAction;
 use Filament\Actions\RestoreAction;
 use Filament\Actions\ViewAction;
-use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Placeholder;
 use Filament\Notifications\Notification;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Tables\Columns\ImageColumn;
@@ -22,6 +24,8 @@ use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\HtmlString;
 use Livewire\Component;
 
 class ListBrands extends Component implements HasActions, HasSchemas, HasTable
@@ -83,13 +87,64 @@ class ListBrands extends Component implements HasActions, HasSchemas, HasTable
                     ->iconButton()
                     ->icon('heroicon-o-eye')
                     ->color('info')
-                // TODO: Add correct Route to display the view form
-                //->url(fn(): string => route('brands.edit'))
-                ,
+                    ->modalHeading('Handelskette anzeigen')
+                    ->modalDescription('Anzeige der Handelsketten-Daten im Detail')
+                    ->stickyModalHeader()
+                    ->stickyModalFooter()
+                    ->modalSubmitAction(false)
+                    ->modalCancelActionLabel('Schließen')
+                    ->form(function (Brand $record): array {
+                        return [
+                            Tabs::make('Handelskette')
+                                ->tabs([
+                                    Tab::make('Allgemein')
+                                        ->columns(2)
+                                        ->schema([
+                                            Placeholder::make('name')
+                                                ->label('Name')
+                                                ->content($record->name ?? '—'),
+                                            Placeholder::make('description')
+                                                ->label('Beschreibung')
+                                                ->content($record->description ?? '—'),
+                                        ]),
+                                    Tab::make('Bild')
+                                        ->schema([
+                                            Placeholder::make('image')
+                                                ->label('Logo')
+                                                ->content(function () use ($record) {
+                                                    if (!$record->image) {
+                                                        return 'kein Bild gespeichert.';
+                                                    }
+                                                    $url = Storage::url($record->image);
+                                                    return new HtmlString('<img src="' . e($url) . '" alt="Logo" class="h-20 object-contain">');
+                                                })
+                                                ->columnSpanFull(),
+                                        ]),
+                                    Tab::make('Bemerkung')
+                                        ->schema([
+                                            Placeholder::make('remark')
+                                                ->label('Bemerkung')
+                                                ->content($record->remark ?? '—')
+                                                ->columnSpanFull(),
+                                        ]),
+                                ]),
+                        ];
+                    })
+                    ->modalActions([
+                        Action::make('edit')
+                            ->label('Bearbeiten')
+                            ->icon('heroicon-o-pencil-square')
+                            ->color('success')
+                            ->url(fn(Brand $record): string => route('brands.edit', $record)),
+                        Action::make('close')
+                            ->label('Schließen')
+                            ->color('gray')
+                            ->close(),
+                    ]),
                 Action::make('edit')
                     ->iconButton()
                     ->icon('heroicon-o-pencil-square')
-                    ->color('success')
+                    ->color('info')
                 // TODO: Add correct Route to display the view form
                 ->url(fn(Brand $record): string => route('brands.edit',$record))
                 ,

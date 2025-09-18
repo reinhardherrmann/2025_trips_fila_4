@@ -31,6 +31,8 @@ use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\HtmlString;
 use Livewire\Component;
 use function Livewire\Volt\form;
 
@@ -187,8 +189,16 @@ class ListTrucks extends Component implements HasActions, HasSchemas, HasTable
                                     Tab::make('Bild')
                                         ->schema([
                                             Placeholder::make('image')
-                                                ->label('Bild')
-                                                ->content($record->image ? (string)$record->image : '—')
+                                                ->label('Logo')
+                                                ->content(function () use ($record) {
+                                                    if (!$record->image) {
+                                                        return 'kein Bild gespeichert!';
+                                                    }
+
+                                                    $url = Storage::url($record->image);
+
+                                                    return new HtmlString('<img src="' . e($url) . '" alt="LKW Bild" class="h-20 object-contain">');
+                                                })
                                                 ->columnSpanFull(),
                                         ]),
                                 ]),

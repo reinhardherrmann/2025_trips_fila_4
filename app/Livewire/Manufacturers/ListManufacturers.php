@@ -10,7 +10,12 @@ use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Actions\RestoreAction;
 use Filament\Actions\ViewAction;
+use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\Tabs as FormsTabs;
+use Filament\Forms\Components\Tabs\Tab as FormsTab;
 use Filament\Notifications\Notification;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Tables\Columns\ImageColumn;
@@ -21,6 +26,8 @@ use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\HtmlString;
 use Livewire\Component;
 
 class ListManufacturers extends Component implements HasActions, HasSchemas, HasTable
@@ -73,11 +80,71 @@ class ListManufacturers extends Component implements HasActions, HasSchemas, Has
                     ->label('Neuen Hersteller erstellen'),
             ])
             ->recordActions([
-                ViewAction::make(),
+                Action::make('view')
+                    ->iconButton()
+                    ->icon('heroicon-o-eye')
+                    ->color('info')
+                    ->modalHeading('Hersteller anzeigen')
+                    ->modalDescription('Anzeige der Herstellerdaten im Detail')
+                    ->stickyModalHeader()
+                    ->stickyModalFooter()
+                    ->modalSubmitAction(false)
+                    ->modalCancelActionLabel('Schließen')
+                    ->form(function (Manufacturer $record): array {
+                        return [
+                            Tabs::make('Herstellerdaten')
+                                ->tabs([
+                                    Tab::make('Allgemein')
+                                        ->columns(2)
+                                        ->schema([
+                                            Placeholder::make('name')
+                                                ->label('Name')
+                                                ->content($record->name ?? '—'),
+                                            Placeholder::make('description')
+                                                ->label('Beschreibung')
+                                                ->content($record->description ?? '—'),
+                                        ]),
+                                    Tab::make('Bild')
+                                        ->schema([
+                                            Placeholder::make('image')
+                                                ->label('Logo')
+                                                ->content(function () use ($record) {
+                                                    if (!$record->image) {
+                                                        return 'kein Bild gespeichert.';
+                                                    }
+
+                                                    $url = Storage::url($record->image);
+
+                                                    return new HtmlString('<img src="' . e($url) . '" alt="Logo" class="h-20 object-contain">');
+                                                })
+                                                ->columnSpanFull(),
+                                        ]),
+                                    Tab::make('Bemerkung')
+                                        ->schema([
+                                            Placeholder::make('remark')
+                                                ->label('Bemerkung')
+                                                ->content($record->remark ?? '—')
+                                                ->columnSpanFull(),
+                                        ]),
+                                ]),
+                        ];
+                    })
+                    ->modalActions([
+                        Action::make('edit_truck')
+                            ->label('LKW bearbeiten')
+                            ->icon('heroicon-o-pencil-square')
+                            ->color('success')
+                            ->visible(fn(Manufacturer $record): bool => $record->trucks()->exists())
+                            ->url(fn(Manufacturer $record): string => route('truck.edit', $record->trucks()->first())),
+                        Action::make('close')
+                            ->label('Schließen')
+                            ->color('gray')
+                            ->close(),
+                    ]),
                 Action::make('edit')
                     ->iconButton()
                     ->icon('heroicon-o-pencil-square')
-                    ->color('success')
+                    ->color('info')
                     // TODO: Add correct Route to display the view form
                    ->url(fn(Manufacturer $record): string => route('manufacturer.edit',$record))
                 ,

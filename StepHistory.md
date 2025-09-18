@@ -1,3 +1,13 @@
+## Step 17 Make Modal to Show Manufacturer and Brand Data
+
+Sources: Junie
+
+- Changed ViewAction accordingly to display data and Image for
+    - Manufacturers
+    - Brands
+-
+
+---
 ## Step 16 Make Component to view Truck Data
 
 Sources: Junie
