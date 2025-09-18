@@ -14,6 +14,7 @@ use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Section as FormsSection;
 use Filament\Forms\Components\Tabs as FormsTabs;
 use Filament\Forms\Components\Tabs\Tab as FormsTab;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Notifications\Notification;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Tabs;
