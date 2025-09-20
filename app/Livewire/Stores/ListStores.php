@@ -77,7 +77,7 @@ class ListStores extends Component implements HasActions, HasSchemas, HasTable
                 Action::make('create')
                     ->icon('heroicon-o-plus')
                     ->color('success')
-                    //->url(fn(): string => route('trucks.create'))
+                    ->url(fn(): string => route('stores.create'))
                     ->label('Neuen Markt erstellen'),
             ])
             ->recordActions([

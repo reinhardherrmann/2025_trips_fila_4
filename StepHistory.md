@@ -1,14 +1,27 @@
-## Step 18 Create Component to List all Stores
+## Step 19 Create Component CreateStore
 
 Sources: none
 
+- using command "php artisan make:filament-livewire-form Stores/CreateStore --generate"
+- Add Route to display CreateStore
+- Add Form to CreateStore
+- Add Validation
+- Add Flash Message for Success and Error
+- Add Button to Save and Cancel Edit
+- Add Confirmation for Cancelling Create
+
+---
+## Step 18 Create Component to List all Stores
+Sources: none
 - create raw Component
 - add Route to navigate to List
 - add Link to Sidebar
 - add HeaderAction and several RowActions
 - add Softdelete to table
 - add filter to show deleted Rows
-
+- add filterable Select Field to search for Addresses and
+- if not exists to add new aAddress and connct to Store
+- Add the same to generate a NavAddress
 ---
 ## Step 17 Make Modal to Show Manufacturer and Brand Data
 Sources: Junie

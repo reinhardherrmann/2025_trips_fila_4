@@ -9,6 +9,7 @@ use App\Livewire\Manufacturers\ListManufacturers;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
+use App\Livewire\Stores\CreateStore;
 use App\Livewire\Stores\ListStores;
 use App\Livewire\Trucks\CreateTruck;
 use App\Livewire\Trucks\EditTruck;
@@ -49,7 +50,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Routes to manage Stores
     Route::get('stores/', ListStores::class)->name('stores.index');
-
+    Route::get('stores/create', CreateStore::class)->name('stores.create');
 });
 
 require __DIR__.'/auth.php';
