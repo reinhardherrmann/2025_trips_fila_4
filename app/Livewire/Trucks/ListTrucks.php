@@ -50,7 +50,8 @@ class ListTrucks extends Component implements HasActions, HasSchemas, HasTable
             // Base query shows all trucks; use filter to show only manufacturer_id = 3 when desired
             ->query(fn(): Builder => Truck::query()) //->where('manufacturer_id', '!=', 3))
             ->columns([
-                ImageColumn::make('image'),
+                ImageColumn::make('image')
+                    ->label('Bild'),
                 TextColumn::make('manufacturer.name')
                     ->label('Hersteller')
                     ->searchable()

@@ -23,6 +23,7 @@
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Platform')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+
                 </flux:navlist.group>
             </flux:navlist>
 
@@ -31,6 +32,9 @@
                     <flux:navlist.item icon="rectangle-stack" :href="route('brands.index')" :current="request()->routeIs('brands.index')" wire:navigate>{{ __('Handelsketten') }}</flux:navlist.item>
                     <flux:navlist.item icon="chat-bubble-left-right"  :href="route('manufacturers.index')" :current="request()->routeIs('manufacturers.index')" wire:navigate>{{ __('Hersteller') }}</flux:navlist.item>
                     <flux:navlist.item icon="truck"  :href="route('trucks.index')" :current="request()->routeIs('trucks.index')" wire:navigate>{{ __('LKW und Trailer') }}</flux:navlist.item>
+                    <flux:navlist.item icon="building-storefront" :href="route('stores.index')"
+                                       :current="request()->routeIs('stores.index')"
+                                       wire:navigate>{{ __('Märkte') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 

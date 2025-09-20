@@ -1,12 +1,21 @@
+## Step 18 Create Component to List all Stores
+
+Sources: none
+
+- create raw Component
+- add Route to navigate to List
+- add Link to Sidebar
+- add HeaderAction and several RowActions
+- add Softdelete to table
+- add filter to show deleted Rows
+
+---
 ## Step 17 Make Modal to Show Manufacturer and Brand Data
-
 Sources: Junie
-
 - Changed ViewAction accordingly to display data and Image for
     - Manufacturers
     - Brands
 -
-
 ---
 ## Step 16 Make Component to view Truck Data
 

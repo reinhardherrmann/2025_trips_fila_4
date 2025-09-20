@@ -17,6 +17,11 @@ class Address extends Model
 
     public function store():HasMany
     {
-        return $this->hasMany(Store::class);
+        return $this->hasMany(Store::class, 'address_id');
+    }
+
+    public function navStore(): HasMany
+    {
+        return $this->hasMany(Store::class, 'nav_id');
     }
 }
