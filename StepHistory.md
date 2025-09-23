@@ -1,7 +1,22 @@
-## Step 20 Edit Component CreateStore To Store Images
+# Step History To List Changes Made over time
+
+## Step 21 Create Component EditStore
 
 Sources: none
 
+- using command "php artisan make:filament-livewire-form Stores/EditStore --edit"
+- Add Component Trucks/EditTruck
+- Add Route to display EditTruck
+- Add Form to EditTruck
+- Add Tabs to better organize Form
+- Add Validation with custom Messages
+- Add Flashmessage for Success and Error
+- Add Button to Save and Cancel Edit
+- Add Confirmation for Cancelling Creation
+
+---
+## Step 20 Edit Component CreateStore To Store Images
+Sources: none
 - created Component CreateStore
 - added path to store images
 - added Notification for success and error
@@ -228,3 +243,15 @@ Sources: Junie
 - Modal has only a Close button, no submit.
 
 ---
+
+## Step 21 (continued) Implement EditStore layout and navigation
+
+- Added route stores.edit to open the EditStore component. ✓
+- Rebuilt EditStore form to mirror CreateStore/EditTruck with Tabs: Allgemein, Adresse, Navigationsadresse, Bild,
+  Erweitert. ✓
+- Added validation with custom messages (same as CreateStore). ✓
+- Added Save button and Cancel button with confirmation dialog. ✓
+- Implemented success notification after saving and redirect to stores.index. ✓
+- Implemented cancel confirmation and redirect to stores.index. ✓
+- Added Edit row action (pencil icon) in ListStores to navigate to stores.edit, keeping the new eye-icon View modal
+  intact. ✓

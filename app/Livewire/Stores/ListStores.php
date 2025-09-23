@@ -189,6 +189,12 @@ class ListStores extends Component implements HasActions, HasSchemas, HasTable
                             ->close(),
                     ]),
 
+                Action::make('edit')
+                    ->iconButton()
+                    ->icon('heroicon-o-pencil-square')
+                    ->color('success')
+                    ->url(fn(Store $record): string => route('stores.edit', $record)),
+
                 Action::make('delete')
                     ->iconButton()
                     ->requiresConfirmation()
