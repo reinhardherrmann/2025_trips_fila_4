@@ -1,9 +1,24 @@
 # Step History To List Changes Made over time
 
-## Step 22 Create Component to List Trips with stopps
+## Step 23 Create Component CreateTrip
 
 Sources: none
 
+- use command "php artisan make:filament-livewire-form Trips/CreateTrip --generate"
+- add Route to display CreateTrip
+- add Form to CreateTrip
+- add Validation
+- add Flashmessage for Success and Error
+- add Button to Save and Cancel Edit
+- add Confirmation for Cancelling Edit or Create
+- added Filter to ListTrips to only show Trips with softDeletes = true
+- added RElation for TripTypes
+-
+-
+
+---
+## Step 22 Create Component to List Trips with stopps
+Sources: none
 - use command "php artisan make:filament-livewire-table Trips/ListTrips --generate"
 - add Route to display ListTrips
 - correct the Relationships for Trips

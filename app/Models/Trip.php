@@ -41,4 +41,19 @@ class Trip extends Model
     {
         return $this->belongsTo(Stock::class, 'target_stock_id');
     }
+
+    public function tripType(): BelongsTo
+    {
+        return $this->belongsTo(TripType::class);
+    }
+
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(Status::class);
+    }
+
+    public function truck(): BelongsTo
+    {
+        return $this->belongsTo(Truck::class);
+    }
 }

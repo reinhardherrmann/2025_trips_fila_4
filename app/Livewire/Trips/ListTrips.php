@@ -33,7 +33,7 @@ class ListTrips extends Component implements HasActions, HasSchemas, HasTable
             ->heading("Übersicht der Touren")
             ->description("Anzeige aller gespeicherten Touren")
             ->query(fn(): Builder => Trip::query()
-                ->with(['user', 'startStock', 'targetStock', 'stopps'])
+                ->with(['user', 'startStock', 'targetStock', 'stopps', 'tripType', 'status', 'truck'])
                 ->where('user_id', auth()->id()))
             ->columns([
                 TextColumn::make('trip_number')
@@ -90,7 +90,7 @@ class ListTrips extends Component implements HasActions, HasSchemas, HasTable
                 Action::make('create')
                     ->icon('heroicon-o-plus')
                     ->color('success')
-                    //->url(fn(): string => route('trips.create'))
+                    ->url(fn(): string => route('trips.create'))
                     ->label('Neue Tour erstellen'),
             ])
             ->recordActions([
