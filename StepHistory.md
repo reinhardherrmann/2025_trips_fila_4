@@ -1,7 +1,21 @@
-## Step 19 Create Component CreateStore
+## Step 20 Edit Component CreateStore To Store Images
 
 Sources: none
 
+- created Component CreateStore
+- added path to store images
+- added Notification for success and error
+- added button to save and cancel edit
+- added Confirmation for Cancelling Edit or Create
+- published livewire confirmation
+- added cast to Model store to save images
+- changes Liststores to display image of Store
+- added Action to View Store in a Modal
+
+---
+
+## Step 19 Create Component CreateStore
+Sources: none
 - using command "php artisan make:filament-livewire-form Stores/CreateStore --generate"
 - Add Route to display CreateStore
 - Add Form to CreateStore
@@ -20,7 +34,7 @@ Sources: none
 - add Softdelete to table
 - add filter to show deleted Rows
 - add filterable Select Field to search for Addresses and
-- if not exists to add new aAddress and connct to Store
+- if not exists to add new aAddress and connect to Store
 - Add the same to generate a NavAddress
 ---
 ## Step 17 Make Modal to Show Manufacturer and Brand Data

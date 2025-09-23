@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('phone_number')->nullable();
             $table->boolean('is_active')->default(true);
             $table->boolean('has_ramp')->default(true);
-            $table->json('images')->nullable();
+            $table->string('images')->nullable();
             $table->text('remark')->nullable();
             $table->timestamps();
         });

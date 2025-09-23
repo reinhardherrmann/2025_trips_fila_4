@@ -51,6 +51,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Routes to manage Stores
     Route::get('stores/', ListStores::class)->name('stores.index');
     Route::get('stores/create', CreateStore::class)->name('stores.create');
+
 });
 
 require __DIR__.'/auth.php';

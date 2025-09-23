@@ -7,6 +7,7 @@ use App\Models\Store;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -182,11 +183,16 @@ class CreateStore extends Component implements HasActions, HasSchemas
 //                                        'required' => 'Bitte geben Sie eine Adresse an.'])
                                     ->columnSpanFull(),
                             ]),
-                        Tab::make('Bilder')
+                        Tab::make('Bild')
                             ->columns(2)
                             ->schema([
-                                TextInput::make('images')
-                                    ->label('Bilder'),
+                                FileUpload::make('images')
+                                    ->label('Bild')
+                                    ->disk('public')
+                                    ->directory('stores')
+                                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/gif', 'image/svg+xml'])
+                                    ->deletable(true)
+                                    ->visibility('public'),
                             ]),
                         Tab::make('Erweitert')
                             ->columns(2)
@@ -205,12 +211,17 @@ class CreateStore extends Component implements HasActions, HasSchemas
     {
         $data = $this->form->getState();
 
+        // images in JSON-String wandeln, falls Array (bei multiple)
+//        if (isset($data['images']) && is_array($data['images'])) {
+//            $data['images'] = json_encode($data['images']);
+//        }
+
         $record = Store::create($data);
 
         $this->form->model($record)->saveRelationships();
 
         Notification::make()
-            ->title('Fahrzeug erstellen')
+            ->title('Neuen Markt erstellen')
             ->success()
             ->body("Markt " . $record->cost_center_number . " erfolgreich erstellt.")
             ->duration(2000)
