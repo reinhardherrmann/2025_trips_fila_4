@@ -42,12 +42,12 @@ class ListTrips extends Component implements HasActions, HasSchemas, HasTable
                     ->sortable(),
                 TextColumn::make('date')
                     ->label('Datum')
-                    ->date()
+                    ->date(format: 'd.m.Y')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('plan_date')
                     ->label('Plandatum')
-                    ->date()
+                    ->date(format: 'd.m.Y')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('startStock.name')
@@ -63,17 +63,19 @@ class ListTrips extends Component implements HasActions, HasSchemas, HasTable
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->label('Erstellt am')
-                    ->dateTime()
+                    ->dateTime(format: 'd.m.Y H:i')
+                    ->searchable()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
                     ->label('geändert am')
-                    ->dateTime()
+                    ->dateTime(format: 'd.m.Y H:i')
+                    ->searchable()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('deleted_at')
                     ->label('gelöscht am')
-                    ->dateTime()
+                    ->dateTime(format: 'd.m.Y H:i')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
