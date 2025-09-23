@@ -1,9 +1,50 @@
 # Step History To List Changes Made over time
 
-## Step 21 Create Component EditStore
+## Step 22 Create Component to List Trips with stopps
 
 Sources: none
 
+- use command "php artisan make:filament-livewire-table Trips/ListTrips --generate"
+- add Route to display ListTrips
+- correct the Relationships for Trips
+- Add SoftDeletes to Trip Model and Create Migration
+- create Headers for List
+- created RowActions and Heading for Table
+
+---
+
+## Step 23 Define Trip, Stopp, Store, and Stock relationships
+
+Sources: Junie
+
+- Trip: added belongsTo relationships startStock() and targetStock() to Stock via start_stock_id and target_stock_id. ✓
+- Verified Stopp already has trip() and store() belongsTo relationships (each Stop has one Store). ✓
+- No UI changes required. ✓
+
+---
+
+## Step 24 Restrict Trips list to authenticated user
+
+Sources: Junie
+
+- Updated ListTrips table base query to filter by auth()->id() and eager-load user, startStock, and targetStock. ✓
+- Ensures only trips belonging to the logged-in user are displayed. ✓
+- Routes already have auth + verified middleware, so no further changes required. ✓
+
+---
+
+## Step 25 Add soft deletes to trips table
+
+Sources: Junie
+
+- Created migration 2025_09_23_092400_add_soft_deletes_to_trips_table.php adding deleted_at column with $table->
+  softDeletes(). ✓
+- Trip model already uses SoftDeletes trait, so no model changes required. ✓
+- ListTrips already includes a deleted_at column; optional filters or restore actions can be added later if needed. ✓
+
+---
+## Step 21 Create Component EditStore
+Sources: none
 - using command "php artisan make:filament-livewire-form Stores/EditStore --edit"
 - Add Component Trucks/EditTruck
 - Add Route to display EditTruck
@@ -13,7 +54,6 @@ Sources: none
 - Add Flashmessage for Success and Error
 - Add Button to Save and Cancel Edit
 - Add Confirmation for Cancelling Creation
-
 ---
 ## Step 20 Edit Component CreateStore To Store Images
 Sources: none

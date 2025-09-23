@@ -11,6 +11,7 @@ use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Stores\CreateStore;
 use App\Livewire\Stores\ListStores;
+use App\Livewire\Trips\ListTrips;
 use App\Livewire\Trucks\CreateTruck;
 use App\Livewire\Trucks\EditTruck;
 use App\Livewire\Trucks\ListTrucks;
@@ -52,6 +53,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('stores/', ListStores::class)->name('stores.index');
     Route::get('stores/create', CreateStore::class)->name('stores.create');
     Route::get('stores/edit/{record}', \App\Livewire\Stores\EditStore::class)->name('stores.edit');
+
+    // TRip releted Routes
+    Route::get('trips/', ListTrips::class)->name('trips.index');
 
 });
 

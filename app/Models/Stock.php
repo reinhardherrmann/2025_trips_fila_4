@@ -13,4 +13,6 @@ class Stock extends Model
     protected $fillable = [
         'address_id','nav_id','stock_number','name','phone_number','is_active','remark', 'images'
     ];
+
+
 }

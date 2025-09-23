@@ -14,18 +14,20 @@ class StockSeeder extends Seeder
     public function run(): void
     {
         Stock::create([
-            'address_id' => 203,
-            'nav_id' => 203,
             'stock_number' => '96020269',
             'name' => 'Lager Mariendorf',
             'is_active' => true,
             'remark' => 'automatisch generiert',
         ]);
         Stock::create([
-            'address_id' => 195,
-            'nav_id' => 195,
             'stock_number' => '96020259',
             'name' => 'Lager Oranienburg',
+            'is_active' => true,
+            'remark' => 'automatisch generiert',
+        ]);
+        Stock::create([
+            'stock_number' => '99999999',
+            'name' => 'anderes Lager',
             'is_active' => true,
             'remark' => 'automatisch generiert',
         ]);
