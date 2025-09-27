@@ -34,6 +34,7 @@ class ListTrips extends Component implements HasActions, HasSchemas, HasTable
             ->description("Anzeige aller gespeicherten Touren")
             ->query(fn(): Builder => Trip::query()
                 ->with(['user', 'startStock', 'targetStock', 'stopps', 'tripType', 'status', 'truck'])
+                ->withCount('stopps')
                 ->where('user_id', auth()->id()))
             ->columns([
                 TextColumn::make('trip_number')
@@ -56,6 +57,9 @@ class ListTrips extends Component implements HasActions, HasSchemas, HasTable
                 TextColumn::make('targetStock.name')
                     ->label('Ziel-Lager')
                     ->searchable(),
+                TextColumn::make('stopps_count')
+                    ->label('Stopps')
+                    ->numeric(),
 
                 TextColumn::make('status')
                     ->label('Status')

@@ -11,7 +11,7 @@ class Stopp extends Model
     /** @use HasFactory<\Database\Factories\StoppFactory> */
     use HasFactory;
 
-    protected $fillable = ['trip_id', 'store_id', 'date', 'arrival_time', 'departure_time', 'order_number'];
+    protected $fillable = ['trip_id', 'store_id', 'arrival_time', 'departure_time', 'order_number', 'remark'];
 
     public function trip(): BelongsTo
     {

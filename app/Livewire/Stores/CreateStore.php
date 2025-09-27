@@ -178,9 +178,6 @@ class CreateStore extends Component implements HasActions, HasSchemas
                                     ->createOptionUsing(function (array $data): int {
                                         return Address::query()->create($data)->getKey();
                                     })
-//                                    ->required()
-//                                    ->validationMessages([
-//                                        'required' => 'Bitte geben Sie eine Adresse an.'])
                                     ->columnSpanFull(),
                             ]),
                         Tab::make('Bild')

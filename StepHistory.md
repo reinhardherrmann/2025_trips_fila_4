@@ -12,9 +12,10 @@ Sources: none
 - add Button to Save and Cancel Edit
 - add Confirmation for Cancelling Edit or Create
 - added Filter to ListTrips to only show Trips with softDeletes = true
-- added RElation for TripTypes
--
--
+- added Relation for TripTypes
+- added Migration to delete Column Field from table stopps
+- run migration
+- tested with 2 Users, can only see ohn trips
 
 ---
 ## Step 22 Create Component to List Trips with stopps
