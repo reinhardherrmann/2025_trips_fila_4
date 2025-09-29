@@ -22,6 +22,22 @@ class Trip extends Model
         'distance_driven','start_km','end_km','status','remark'
     ];
 
+    protected static function booted(): void
+    {
+        static::saving(function (Trip $trip) {
+            $start = $trip->start_km;
+            $end = $trip->end_km;
+
+            // Nur berechnen, wenn beide Werte vorhanden sind
+            if ($start !== null && $end !== null) {
+                $trip->distance_driven = max(0, (int)$end - (int)$start);
+            } else {
+                // Je nach Wunsch: null lassen oder 0 setzen
+                $trip->distance_driven = null; // oder: 0
+            }
+        });
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

@@ -5,6 +5,7 @@ namespace App\Livewire\Trips;
 use App\Models\Store;
 use App\Models\Trip;
 use App\Models\Status;
+use App\Models\Truck;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\Concerns\InteractsWithActions;
@@ -193,6 +194,10 @@ class ListTrips extends Component implements HasActions, HasSchemas, HasTable
                             ->body('Die Tour wurde erfolgreich beendet.')
                             ->success()
                     ),
+                Action::make('edit')
+                    ->iconButton()
+                    ->icon('heroicon-o-pencil-square')
+                    ->color('success')->url(fn(Trip $record): string => route('trips.edit', $record)),
                 Action::make('delete')
                     ->iconButton()
                     ->requiresConfirmation()

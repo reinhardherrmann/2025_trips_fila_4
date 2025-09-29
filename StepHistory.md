@@ -1,9 +1,25 @@
 # Step History To List Changes Made over time
 
-## Step 24 Add Buttons to start end End Trip
+## Step 25 Add Component to edit Trip
 
 Sources: none
 
+- create Route to edit trip
+- create Component EditTrip using command "php artisan make:filament-livewire-form Trips/EditTrip --edit"
+- add Route to display EditTrip
+- add Form to EditTrip
+- add Tabs to better organize Form
+- add Validation with custom Messages
+- add Flashmessage for Success and Error
+- add Button to Save and Cancel Edit
+- add Confirmation for Cancelling Creation
+- added Filter to ListTrips to only show Trips with softDeletes = true
+- added function to Trip Model to calculate drivendistance before saving
+
+---
+
+## Step 24 Add Buttons to start end End Trip
+Sources: none
 - add Column status_id to trips table
 - add status_id to Trip Model
 - added Select for Trip's Status when creating a Trip
