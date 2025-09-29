@@ -326,7 +326,7 @@ class CreateTrip extends Component implements HasActions, HasSchemas
                                 Textarea::make('remark')
                                     ->label('Bemerkung'),
                             ]),
-                        Tab::make('Tourstart und Ende')
+                        Tab::make('Tourzeiten und Status')
                             ->columns(2)
                             ->schema([
                                 DateTimePicker::make('start')
@@ -343,6 +343,10 @@ class CreateTrip extends Component implements HasActions, HasSchemas
                                     ->label('gefahrene Distanz')
                                     ->numeric()
                                     ->disabled(),
+                                SELECT::make('status_id')
+                                    ->label('Status')->label('Status')
+                                    ->relationship('status', 'value')
+                                    ->default(1)
                             ]),
                         Tab::make('Störzeiten')
                             ->columns(2)
@@ -376,7 +380,7 @@ class CreateTrip extends Component implements HasActions, HasSchemas
     {
         $data = $this->form->getState();
         $data['user_id'] = auth()->user()->id;
-        ds($data);
+
 
         $record = Trip::create($data);
 

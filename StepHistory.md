@@ -1,9 +1,21 @@
 # Step History To List Changes Made over time
 
-## Step 23 Create Component CreateTrip
+## Step 24 Add Buttons to start end End Trip
 
 Sources: none
 
+- add Column status_id to trips table
+- add status_id to Trip Model
+- added Select for Trip's Status when creating a Trip
+- changed status Column in ListTrips to show status
+- added Button to start Trip
+- changed Status to be displayed as badge
+- added button to end trip
+
+---
+
+## Step 23 Create Component CreateTrip
+Sources: none
 - use command "php artisan make:filament-livewire-form Trips/CreateTrip --generate"
 - add Route to display CreateTrip
 - add Form to CreateTrip
@@ -16,7 +28,6 @@ Sources: none
 - added Migration to delete Column Field from table stopps
 - run migration
 - tested with 2 Users, can only see ohn trips
-
 ---
 ## Step 22 Create Component to List Trips with stopps
 Sources: none
