@@ -172,7 +172,7 @@ class ListTrips extends Component implements HasActions, HasSchemas, HasTable
                             ->numeric()
                             ->default(fn(Trip $record) => (int)($record->start_km ?? 0) + (int)($record->plan_distance ?? 0))
                             ->minValue(fn(Trip $record) => $record->start_km ?? 0)
-                            ->helperText(fn(Trip $record) => 'Start-Kilometer: ' . ($record->start_km ?? 0) . ', Plan-km: ' . ($record->plan_distance ?? 0))
+                            ->helperText(fn(Trip $record) => 'Startzeit: ' . ($record->start) . ' Start-Kilometer: ' . ($record->start_km ?? 0) . ', Plan-km: ' . ($record->plan_distance ?? 0))
                             ->required(),
                     ])
                     ->action(function (Trip $record, array $data) {
