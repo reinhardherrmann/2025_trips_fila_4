@@ -9,7 +9,7 @@ and Junie
 - created Widget to show open trips
 - installed laradumps globally
 - added link to trip to edit open Trip
-
+- fixed bug in EditTrip that caused incorrect Title when saving trip
 ---
 
 ## Step 25 Add Component to edit Trip

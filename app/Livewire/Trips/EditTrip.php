@@ -385,9 +385,9 @@ class EditTrip extends Component implements HasActions, HasSchemas
         $this->record->update($data);
 
         Notification::make()
-            ->title('Neue Tour erstellen')
+            ->title('Tourdaten bearbeiten')
             ->success()
-            ->body("Tour " . ($this->record->trip_number ?? '–') . " erfolgreich gespeichert.")
+            ->body("Tour " . ($this->record->trip_number ?? '–') . " erfolgreich geändert.")
             ->duration(2000)
             ->success()
             ->send();
