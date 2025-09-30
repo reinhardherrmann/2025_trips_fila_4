@@ -229,10 +229,14 @@ class ListTrips extends Component implements HasActions, HasSchemas, HasTable
                     //
                 ]),
             ]);
+
     }
 
     public function render(): View
     {
+        ds(fn(): Builder => Trip::query()
+            ->with(['user', 'startStock', 'targetStock', 'stopps', 'tripType', 'status', 'truck'])
+            ->withCount('stopps'));
         return view('livewire.trips.list-trips');
     }
 }

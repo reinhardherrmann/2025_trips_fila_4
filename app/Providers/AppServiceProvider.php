@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Prevent the default Laravel 9.x error page from being displayed
+        // $this->app['request']->server->set('HTTPS', true);
+        // prevent N+1 query
+        Model::automaticallyEagerLoadRelationships();
     }
 }

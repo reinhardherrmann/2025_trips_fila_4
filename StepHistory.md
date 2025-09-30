@@ -1,5 +1,17 @@
 # Step History To List Changes Made over time
 
+## Step 26 Install Widget and Laradumps globally
+
+Sources: https://laradumps.dev/get-started/installation.html?id=desktop-app#laravel-package
+and Junie
+
+- cretaed Widget to show number of trips for the last 7 days
+- created Widget to show open trips
+- installed laradumps globally
+- added link to trip to edit open Trip
+
+---
+
 ## Step 25 Add Component to edit Trip
 
 Sources: none
