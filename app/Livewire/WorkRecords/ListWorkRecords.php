@@ -73,6 +73,7 @@ class ListWorkRecords extends Component implements HasActions, HasSchemas, HasTa
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('work_date', 'desc')
             ->filters([
                 // Date presets
                 Filter::make('current_week')
