@@ -1,10 +1,22 @@
 # Step History To List Changes Made over time
 
-## Step 26 Install Widget and Laradumps globally
+## Step 27 Create Migrations and Models for Shift Plan and WorkRecords
 
+Sources: https://claude.ai/chat/85e49efb-d39a-47a8-8fcf-507e0b1fcabf
+
+- create the following Models with Migrations:
+    - shift_types_table, work_records_table absences_table
+- defined all fields and Soft deletes
+- created the Relationships:
+- run the migrations
+- added shifts to ShiftTypesSeeder
+- run ShiftTypeSeeder to create ShiftTypes
+
+---
+
+## Step 26 Install Widget and Laradumps globally
 Sources: https://laradumps.dev/get-started/installation.html?id=desktop-app#laravel-package
 and Junie
-
 - cretaed Widget to show number of trips for the last 7 days
 - created Widget to show open trips
 - installed laradumps globally
