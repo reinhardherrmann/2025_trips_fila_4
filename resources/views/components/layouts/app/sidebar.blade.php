@@ -21,14 +21,16 @@
             </a>
 
             <flux:navlist variant="outline">
-                <flux:navlist.group :heading="__('Touren')" class="grid">
+                <flux:navlist.group :heading="__('Plattform')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
-
+                    <flux:navlist.item icon="clock" :href="route('work-records.index')"
+                                       :current="request()->routeIs('work-records.index')"
+                                       wire:navigate>{{ __('Stundenübersicht') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 
             <flux:navlist variant="outline">
-                <flux:navlist.group :heading="__('Platform')" class="grid">
+                <flux:navlist.group :heading="__('Touren')" class="grid">
                     <flux:navlist.item icon="map" :href="route('trips.index')"
                                        :current="request()->routeIs('trips.index')"
                                        wire:navigate>{{ __('Touren') }}</flux:navlist.item>

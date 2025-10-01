@@ -1,9 +1,24 @@
 # Step History To List Changes Made over time
 
+## Step 28 Create ListWorkRecords to display worked shifts
+
+Sources: none and support ofJunie
+
+- using command "php artisan make:filament-livewire-table WorkRecords/ListWorkRecords --generate"
+- add Route to display ListWorkRecords
+- add Link to sidebar
+- add HeaderAction and several RowActions
+- add Softdelete to table
+- add filter to show deleted Rows
+- add filterable Select Field to search for Shifts
+- fixed some bugs:
+    - sorted tripsList initially by date and created_at
+    - added TripsPerDay to dashboard doesn't work in Prod
+    - changed icons to start and end Trip to solid
+
+---
 ## Step 27 Create Migrations and Models for Shift Plan and WorkRecords
-
 Sources: https://claude.ai/chat/85e49efb-d39a-47a8-8fcf-507e0b1fcabf
-
 - create the following Models with Migrations:
     - shift_types_table, work_records_table absences_table
 - defined all fields and Soft deletes
@@ -11,7 +26,6 @@ Sources: https://claude.ai/chat/85e49efb-d39a-47a8-8fcf-507e0b1fcabf
 - run the migrations
 - added shifts to ShiftTypesSeeder
 - run ShiftTypeSeeder to create ShiftTypes
-
 ---
 
 ## Step 26 Install Widget and Laradumps globally

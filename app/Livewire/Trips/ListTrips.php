@@ -100,7 +100,78 @@ class ListTrips extends Component implements HasActions, HasSchemas, HasTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort(function (Builder $query) {
+                return $query
+                    ->orderBy('date', 'desc')
+                    ->orderBy('created_at', 'desc');
+            })
             ->filters([
+                // Date presets
+                Filter::make('current_week')
+                    ->label('Aktuelle Woche')
+                    ->default()
+                    ->query(function (Builder $query) {
+                        $start = now()->startOfWeek();
+                        $end = now()->endOfWeek();
+                        $query->where(function ($q) use ($start, $end) {
+                            $q->whereBetween('date', [$start, $end])
+                                ->orWhereBetween('created_at', [$start, $end]);
+                        });
+                    }),
+                Filter::make('last_week')
+                    ->label('Letzte Woche')
+                    ->query(function (Builder $query) {
+                        $start = now()->subWeek()->startOfWeek();
+                        $end = now()->subWeek()->endOfWeek();
+                        $query->where(function ($q) use ($start, $end) {
+                            $q->whereBetween('date', [$start, $end])
+                                ->orWhereBetween('created_at', [$start, $end]);
+                        });
+                    }),
+                Filter::make('current_month')
+                    ->label('Aktueller Monat')
+                    ->query(function (Builder $query) {
+                        $start = now()->startOfMonth();
+                        $end = now()->endOfMonth();
+                        $query->where(function ($q) use ($start, $end) {
+                            $q->whereBetween('date', [$start, $end])
+                                ->orWhereBetween('created_at', [$start, $end]);
+                        });
+                    }),
+                Filter::make('last_month')
+                    ->label('Letzter Monat')
+                    ->query(function (Builder $query) {
+                        $base = now()->subMonthNoOverflow();
+                        $start = $base->copy()->startOfMonth();
+                        $end = $base->copy()->endOfMonth();
+                        $query->where(function ($q) use ($start, $end) {
+                            $q->whereBetween('date', [$start, $end])
+                                ->orWhereBetween('created_at', [$start, $end]);
+                        });
+                    }),
+                Filter::make('current_year')
+                    ->label('Aktuelles Jahr')
+                    ->query(function (Builder $query) {
+                        $start = now()->startOfYear();
+                        $end = now()->endOfYear();
+                        $query->where(function ($q) use ($start, $end) {
+                            $q->whereBetween('date', [$start, $end])
+                                ->orWhereBetween('created_at', [$start, $end]);
+                        });
+                    }),
+                Filter::make('last_year')
+                    ->label('Letztes Jahr')
+                    ->query(function (Builder $query) {
+                        $base = now()->subYear();
+                        $start = $base->copy()->startOfYear();
+                        $end = $base->copy()->endOfYear();
+                        $query->where(function ($q) use ($start, $end) {
+                            $q->whereBetween('date', [$start, $end])
+                                ->orWhereBetween('created_at', [$start, $end]);
+                        });
+                    }),
+
+                // Soft-deleted
                 Filter::make('deleted_at')
                     ->label('gelöschte Märkte')
                     ->modifyBaseQueryUsing(function ($query) {
@@ -118,11 +189,11 @@ class ListTrips extends Component implements HasActions, HasSchemas, HasTable
                 Action::make('startTrip')
                     ->iconButton()
                     ->label('Tour starten')
-                    ->icon('heroicon-o-play')
+                    ->icon('heroicon-s-play')
                     ->color('success')
                     ->modalHeading('Tour starten')
                     ->modalDescription('Bitte Startzeit und Start-Kilometer eingeben.')
-                    ->modalIcon('heroicon-o-play')
+                    ->modalIcon('heroicon-s-play')
                     ->modalCancelActionLabel('Abbrechen')
                     ->modalSubmitActionLabel('Speichern')
                     ->form([
@@ -155,11 +226,11 @@ class ListTrips extends Component implements HasActions, HasSchemas, HasTable
                 Action::make('endTrip')
                     ->iconButton()
                     ->label('Tour beenden')
-                    ->icon('heroicon-o-stop')
+                    ->icon('heroicon-s-stop')
                     ->color('primary')
                     ->modalHeading('Tour beenden')
                     ->modalDescription('Bitte Endzeit und End-Kilometer eingeben.')
-                    ->modalIcon('heroicon-o-stop')
+                    ->modalIcon('heroicon-s-stop')
                     ->modalCancelActionLabel('Abbrechen')
                     ->modalSubmitActionLabel('Speichern')
                     ->form([

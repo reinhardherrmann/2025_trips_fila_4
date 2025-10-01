@@ -9,6 +9,7 @@ class TripsKpi extends Component
 {
     public int $countLast7 = 0;
     public string $avgStops = '0.0';
+    public string $tripsPerDay = '0.0';
 
     public function mount(): void
     {
@@ -22,9 +23,22 @@ class TripsKpi extends Component
             })
             ->withCount('stopps');
 
-        $this->countLast7 = (clone $q)->count();
-        $avg = (clone $q)->get()->avg('stopps_count');
+        $trips = (clone $q)->get();
+
+        $this->countLast7 = $trips->count();
+
+        $avg = $trips->avg('stopps_count');
         $this->avgStops = $avg ? number_format((float)$avg, 1) : '0.0';
+
+        $daysWithTrips = $trips
+            ->map(fn($t) => optional($t->date ?? $t->created_at)->toDateString())
+            ->filter()
+            ->unique()
+            ->count();
+
+        $this->tripsPerDay = $daysWithTrips > 0
+            ? number_format($this->countLast7 / $daysWithTrips, 1)
+            : '0.0';
     }
 
     public function render()

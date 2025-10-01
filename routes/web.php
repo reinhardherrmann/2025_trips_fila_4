@@ -18,6 +18,7 @@ use App\Livewire\Trips\ListTrips;
 use App\Livewire\Trucks\CreateTruck;
 use App\Livewire\Trucks\EditTruck;
 use App\Livewire\Trucks\ListTrucks;
+use App\Livewire\WorkRecords\ListWorkRecords;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -41,6 +42,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('brands/', ListBrands::class)->name('brands.index');
     Route::get('edit-brand/{record}', EditBrand::class)->name('brands.edit');
     Route::get('create-brand', CreateBrand::class)->name('brands.create');
+
+    Route::get('work-records/', ListWorkRecords::class)->name('work-records.index');
 
     // Routes to manage Manufacturers
     Route::get('manufacturers/', ListManufacturers::class)->name('manufacturers.index');
