@@ -1,9 +1,16 @@
 # Step History To List Changes Made over time
 
+## Step 30 Add Seeder to DatabaseSeeder
+
+Sources:
+
+- Added Data to TruckSeeder
+- Added Data to UserSeeder
+- Integrated Seeders to DatabaseSeeder to run them with "php artisan db:seed"
+
+---
 ## Step Main Bugfix
-
 Sources: Junie
-
 - fixed bug that Navlist "Grundtabellen in son collapsed by default"
     - adding "expandable :expanded="false" to Navlist
 - Bug Dashboard doesn't show open Trips fixed with:

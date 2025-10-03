@@ -33,5 +33,9 @@ class BrandSeeder extends Seeder
             'description' => 'keiner Handelskette zugeordnet',
             'remark' => 'automatisch generiert']);
 
+        Brand::create([
+            'name' => 'Andere Unternehmen',
+            'description' => 'Für Stopps, die keine Märkte sind',
+            'remark' => 'automatisch generiert']);
     }
 }
