@@ -1,9 +1,14 @@
 # Step History To List Changes Made over time
 
+## Step 29 Create Modals to Start and End Shift
+
+Sources: none and support of Junie
+
+- created Modals as first step. needs to be improved.
+
+---
 ## Step 28 Create ListWorkRecords to display worked shifts
-
 Sources: none and support ofJunie
-
 - using command "php artisan make:filament-livewire-table WorkRecords/ListWorkRecords --generate"
 - add Route to display ListWorkRecords
 - add Link to sidebar
@@ -15,7 +20,7 @@ Sources: none and support ofJunie
     - sorted tripsList initially by date and created_at
     - added TripsPerDay to dashboard doesn't work in Prod
     - changed icons to start and end Trip to solid
-
+  - changed layout of trips-kpi.blade
 ---
 ## Step 27 Create Migrations and Models for Shift Plan and WorkRecords
 Sources: https://claude.ai/chat/85e49efb-d39a-47a8-8fcf-507e0b1fcabf
@@ -376,3 +381,22 @@ Sources: Junie
 - Implemented cancel confirmation and redirect to stores.index. ✓
 - Added Edit row action (pencil icon) in ListStores to navigate to stores.edit, keeping the new eye-icon View modal
   intact. ✓
+
+- Implemented WorkRecords clock-in/clock-out modals in ListWorkRecords header actions.
+    - Added form fields: work_date (default today), time (default now), and shift type select.
+    - Clock-in creates a new WorkRecord; clock-out updates the latest open WorkRecord and computes differences.
+    - Success notifications added; table refreshes after actions.
+
+---
+
+## Step 22 Configure global timezone to MEZ (Europe/Berlin)
+
+- Updated config/app.php to use Europe/Berlin as the default timezone via env override:
+  `'timezone' => env('APP_TIMEZONE', 'Europe/Berlin')`. ✓
+- This makes all now(), Carbon formatting, Filament Date/Time display and defaults use MEZ/CE(S)T automatically. ✓
+- For production, set `APP_TIMEZONE=Europe/Berlin` in your .env and run `php artisan config:clear` to ensure config
+  cache picks it up. ✓
+
+- 2025-10-02: Display target_minutes, actual_minutes, and difference_minutes in ListWorkRecords as hours (float,
+  minutes/60) using formatStateUsing in the Filament table columns. No changes to stored values; only UI formatting
+  adjusted.
