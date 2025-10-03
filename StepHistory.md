@@ -1,5 +1,13 @@
 # Step History To List Changes Made over time
 
+## Step Main Bugfix
+
+Sources: Junie
+
+- fixed bug that Navlist "Grundtabellen in son collapsed by default"
+    - adding "expandable :expanded="false" to Navlist
+
+---
 ## Step 29 Create Modals to Start and End Shift
 Sources: none and support of Junie
 - created Modals as first step. needs to be improved.
