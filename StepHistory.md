@@ -1,11 +1,8 @@
 # Step History To List Changes Made over time
 
 ## Step 29 Create Modals to Start and End Shift
-
 Sources: none and support of Junie
-
 - created Modals as first step. needs to be improved.
-
 ---
 ## Step 28 Create ListWorkRecords to display worked shifts
 Sources: none and support ofJunie
