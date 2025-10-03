@@ -58,7 +58,7 @@ class EditBrand extends Component implements HasActions, HasSchemas
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/gif', 'image/svg+xml'])
                             ->deletable(true)
                             ->image()
-                            ,
+                        ,
                         Textarea::make('remark')
                             ->columnSpanFull(),
                     ])

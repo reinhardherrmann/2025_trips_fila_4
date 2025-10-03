@@ -11,7 +11,7 @@ class DisruptionType extends Model
     /** @use HasFactory<\Database\Factories\DisruptionTypeFactory> */
     use HasFactory;
 
-    protected $fillable = [ 'id','disruption_id','name','description'];
+    protected $fillable = ['id', 'disruption_id', 'name', 'description'];
 
     public function disruption(): BelongsTo
     {

@@ -13,19 +13,24 @@ class Store extends Model
     use HasFactory;
 
     use SoftDeletes;
-    protected $fillable = ['brand_id','address_id','nav_id','cost_center_number',
-        'name','phone_number','is_active','has_ramp','remark', 'images'];
+
+    protected $fillable = ['brand_id', 'address_id', 'nav_id', 'cost_center_number',
+        'name', 'phone_number', 'is_active', 'has_ramp', 'remark', 'images'];
 
     protected $casts = ['images' => 'array'];
 
-    public function brand():BelongsTo
+    public function brand(): BelongsTo
     {
         return $this->belongsTo(Brand::class);
     }
-    public function address():BelongsTo{
+
+    public function address(): BelongsTo
+    {
         return $this->belongsTo(Address::class);
     }
-    public function navAddress():BelongsTo{
+
+    public function navAddress(): BelongsTo
+    {
         return $this->belongsTo(Address::class, 'nav_id');
     }
 

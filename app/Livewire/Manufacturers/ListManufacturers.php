@@ -41,15 +41,15 @@ class ListManufacturers extends Component implements HasActions, HasSchemas, Has
         return $table
             ->heading('Übersicht der LKW Hersteller')
             ->description('Anzeige aller gespeicherten Hersteller')
-            ->query(fn (): Builder => Manufacturer::query())
+            ->query(fn(): Builder => Manufacturer::query())
             ->columns([
                 ImageColumn::make('image')
-                ->label('Logo')
-                ->imageHeight(30),
+                    ->label('Logo')
+                    ->imageHeight(30),
                 TextColumn::make('name')
                     ->label('Name')
                     ->searchable()
-                ->sortable(),
+                    ->sortable(),
                 TextColumn::make('description')
                     ->label('Beschreibung')
                     ->limit(30)
@@ -67,7 +67,7 @@ class ListManufacturers extends Component implements HasActions, HasSchemas, Has
             ])
             ->filters([
                 Filter::make('deleted_at')
-                    ->modifyBaseQueryUsing(function ($query){
+                    ->modifyBaseQueryUsing(function ($query) {
                         return $query->onlyTrashed();
                     })
             ])
@@ -146,7 +146,7 @@ class ListManufacturers extends Component implements HasActions, HasSchemas, Has
                     ->icon('heroicon-o-pencil-square')
                     ->color('info')
                     // TODO: Add correct Route to display the view form
-                   ->url(fn(Manufacturer $record): string => route('manufacturer.edit',$record))
+                    ->url(fn(Manufacturer $record): string => route('manufacturer.edit', $record))
                 ,
                 Action::make('delete')
                     ->iconButton()

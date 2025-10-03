@@ -18,10 +18,11 @@ class OpenTripsTable extends Component
             ->with(['status'])
             ->withCount('stopps')
             ->where('user_id', auth()->id())
-            ->when($openId, fn($q) => $q->where('status_id', $openId))
+            ->when($openId, fn($q) => $q->where('status_id', '<=', 2))
             ->orderByDesc('date')
             ->limit(20)
             ->get();
+        //ds($this->trips);
     }
 
     public function render()

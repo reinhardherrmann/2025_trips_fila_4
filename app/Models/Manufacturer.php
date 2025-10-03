@@ -14,7 +14,7 @@ class Manufacturer extends Model
 
     use SoftDeletes;
 
-    protected $fillable = ['name','description','image','remark'];
+    protected $fillable = ['name', 'description', 'image', 'remark'];
 
 
     public function trucks(): HasMany

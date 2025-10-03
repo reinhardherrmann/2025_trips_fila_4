@@ -6,7 +6,8 @@ Sources: Junie
 
 - fixed bug that Navlist "Grundtabellen in son collapsed by default"
     - adding "expandable :expanded="false" to Navlist
-
+- Bug Dashboard doesn't show open Trips fixed with:
+    - correct query to show Trips with status_id <= 2
 ---
 ## Step 29 Create Modals to Start and End Shift
 Sources: none and support of Junie

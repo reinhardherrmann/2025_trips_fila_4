@@ -10,5 +10,5 @@ class Setting extends Model
     /** @use HasFactory<\Database\Factories\SettingFactory> */
     use HasFactory;
 
-    protected $fillable = ['user_id','key','value','description'];
+    protected $fillable = ['user_id', 'key', 'value', 'description'];
 }

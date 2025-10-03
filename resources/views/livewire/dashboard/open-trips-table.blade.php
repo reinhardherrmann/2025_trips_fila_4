@@ -8,7 +8,6 @@
             <th class="px-4 py-2 text-left font-medium">Tour</th>
             <th class="px-4 py-2 text-left font-medium">Date</th>
             <th class="px-4 py-2 text-left font-medium">Stops</th>
-            <th class="px-4 py-2 text-left font-medium">Status</th>
         </tr>
         </thead>
         <tbody>

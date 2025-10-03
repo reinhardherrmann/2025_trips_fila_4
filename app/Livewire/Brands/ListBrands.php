@@ -44,7 +44,7 @@ class ListBrands extends Component implements HasActions, HasSchemas, HasTable
             ->columns([
                 ImageColumn::make('image')
                     ->label('Logo')
-                ->imageHeight(30),
+                    ->imageHeight(30),
                 TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
@@ -68,7 +68,7 @@ class ListBrands extends Component implements HasActions, HasSchemas, HasTable
             ])
             ->filters([
                 Filter::make('deleted_at')
-                    ->modifyBaseQueryUsing(function ($query){
+                    ->modifyBaseQueryUsing(function ($query) {
                         return $query->onlyTrashed();
                     })
                 // ...
@@ -81,7 +81,6 @@ class ListBrands extends Component implements HasActions, HasSchemas, HasTable
                     ->url(fn(): string => route('brands.create'))
                     ->label('Neue Handelskette'),
             ])
-
             ->recordActions([
                 Action::make('view')
                     ->iconButton()
@@ -145,8 +144,8 @@ class ListBrands extends Component implements HasActions, HasSchemas, HasTable
                     ->iconButton()
                     ->icon('heroicon-o-pencil-square')
                     ->color('info')
-                // TODO: Add correct Route to display the view form
-                ->url(fn(Brand $record): string => route('brands.edit',$record))
+                    // TODO: Add correct Route to display the view form
+                    ->url(fn(Brand $record): string => route('brands.edit', $record))
                 ,
                 Action::make('delete')
                     ->iconButton()

@@ -92,7 +92,6 @@ class CreateBrand extends Component implements HasActions, HasSchemas
         return $this->redirectRoute('brands.index');
 
 
-
     }
 
     public function render(): View

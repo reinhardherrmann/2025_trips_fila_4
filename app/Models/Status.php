@@ -10,5 +10,5 @@ class Status extends Model
     /** @use HasFactory<\Database\Factories\StatusFactory> */
     use HasFactory;
 
-    protected $fillable = ['name','value','description'];
+    protected $fillable = ['name', 'value', 'description'];
 }

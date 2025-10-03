@@ -43,6 +43,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('edit-brand/{record}', EditBrand::class)->name('brands.edit');
     Route::get('create-brand', CreateBrand::class)->name('brands.create');
 
+    // Routes to manage Work Records and Time Tables
     Route::get('work-records/', ListWorkRecords::class)->name('work-records.index');
 
     // Routes to manage Manufacturers
@@ -60,7 +61,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('stores/create', CreateStore::class)->name('stores.create');
     Route::get('stores/edit/{record}', EditStore::class)->name('stores.edit');
 
-    // TRip related Routes
+    // Routes to manage Trips
     Route::get('trips/', ListTrips::class)->name('trips.index');
     Route::get('trips/create', CreateTrip::class)->name('trips.create');
     Route::get('trips/edit/{record}', EditTrip::class)->name('trips.edit');

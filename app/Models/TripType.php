@@ -11,9 +11,9 @@ class TripType extends Model
     /** @use HasFactory<\Database\Factories\TripTypeFactory> */
     use HasFactory;
 
-    protected $fillable = ['name','description','remark'];
+    protected $fillable = ['name', 'description', 'remark'];
 
-    public function trip():BelongsTo
+    public function trip(): BelongsTo
     {
         return $this->belongsTo(Trip::class);
     }

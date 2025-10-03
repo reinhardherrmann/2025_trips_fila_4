@@ -11,6 +11,6 @@ class Remark extends Model
     use HasFactory;
 
     protected $fillable = [
-        'date','remark'
+        'date', 'remark'
     ];
 }

@@ -82,6 +82,7 @@ class EditManufacturer extends Component implements HasActions, HasSchemas
                 $this->redirectRoute('manufacturers.index');
             });
     }
+
     public function save()
     {
         $data = $this->form->getState();

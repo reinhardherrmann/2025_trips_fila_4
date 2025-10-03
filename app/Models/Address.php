@@ -12,10 +12,10 @@ class Address extends Model
     use HasFactory;
 
     protected $fillable = [
-        'remark_id','street','postal_code','city','district','country','image', 'remark'
+        'remark_id', 'street', 'postal_code', 'city', 'district', 'country', 'image', 'remark'
     ];
 
-    public function store():HasMany
+    public function store(): HasMany
     {
         return $this->hasMany(Store::class, 'address_id');
     }

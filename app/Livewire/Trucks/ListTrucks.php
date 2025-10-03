@@ -100,7 +100,7 @@ class ListTrucks extends Component implements HasActions, HasSchemas, HasTable
             ->filters([
                 Filter::make('deleted_at')
                     ->label('gelöschte Fahrzeuge')
-                    ->modifyBaseQueryUsing(function ($query){
+                    ->modifyBaseQueryUsing(function ($query) {
                         return $query->onlyTrashed();
                     }),
                 TernaryFilter::make('trailer_toggle')
