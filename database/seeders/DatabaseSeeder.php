@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
+            BrandSeeder::class,
             StatusSeeder::class,
             ManufacturerSeeder::class,
             ShiftTypeSeeder::class,
