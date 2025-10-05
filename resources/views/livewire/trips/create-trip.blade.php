@@ -4,7 +4,7 @@
 
         <div class="mt-5">
 
-            {{-- Filament Action mit Bestätigungs-Dialog für Abbruch --}}
+            <!-- Filament Action mit Bestätigungs-Dialog für Abbruch -->
             <flux:button
                 variant="primary"
                 color="red"

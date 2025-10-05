@@ -1,5 +1,12 @@
 # Step History To List Changes Made over time
 
+## Step 31 Change CreateTrip Form to Wizard
+
+Sources: Junie
+
+- created Wizard to create Trip
+
+---
 ## Step 30 Add Seeder to DatabaseSeeder
 Sources:
 - Added Data to TruckSeeder
