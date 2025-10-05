@@ -1,12 +1,11 @@
 # Step History To List Changes Made over time
 
-## Step 31 Change CreateTrip Form to Wizard
-
-Sources: Junie
-
-- created Wizard to create Trip
-
+## Step 31 Main Bugfixes
+- Video Source:  
+- defined correct id's in TruckSeeder
+- fixed bug in DatabaseSeeder
 ---
+
 ## Step 30 Add Seeder to DatabaseSeeder
 Sources:
 - Added Data to TruckSeeder
@@ -63,7 +62,6 @@ and Junie
 ## Step 25 Add Component to edit Trip
 
 Sources: none
-
 - create Route to edit trip
 - create Component EditTrip using command "php artisan make:filament-livewire-form Trips/EditTrip --edit"
 - add Route to display EditTrip

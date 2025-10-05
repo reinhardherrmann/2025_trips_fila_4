@@ -26,7 +26,7 @@ class TruckSeeder extends Seeder
             'remark' => 'automatisch erstellt',
         ]);
         Truck::create([
-            'id' => 1,
+            'id' => 2,
             'manufacturer_id' => 1,
             'type' => 'Mercedes Antos',
             'truck_number' => '0098',
@@ -39,8 +39,8 @@ class TruckSeeder extends Seeder
         ]);
 
         Truck::create([
-            'id' => 1,
-            'manufacturer_id' => 2,
+            'id' => 3,
+            'manufacturer_id' => 1,
             'type' => 'Mercedes Antos',
             'truck_number' => '0095',
             'licence_plate' => 'PM RB 5095',
@@ -52,8 +52,8 @@ class TruckSeeder extends Seeder
         ]);
 
         Truck::create([
-            'id' => 1,
-            'manufacturer_id' => 3,
+            'id' => 4,
+            'manufacturer_id' => 1,
             'type' => 'Mercedes Antos',
             'truck_number' => '0096',
             'licence_plate' => 'PM RB 5096',
@@ -65,8 +65,8 @@ class TruckSeeder extends Seeder
         ]);
 
         Truck::create([
-            'id' => 1,
-            'manufacturer_id' => 4,
+            'id' => 5,
+            'manufacturer_id' => 1,
             'type' => 'Mercedes Antos',
             'truck_number' => '0097',
             'licence_plate' => 'PM RB 5097',
@@ -77,8 +77,8 @@ class TruckSeeder extends Seeder
             'remark' => 'automatisch erstellt',
         ]);
         Truck::create([
-            'id' => 1,
-            'manufacturer_id' => 5,
+            'id' => 6,
+            'manufacturer_id' => 1,
             'type' => 'Mercedes Antos',
             'truck_number' => '0099',
             'licence_plate' => 'PM RB 5099',
