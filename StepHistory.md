@@ -1,5 +1,14 @@
 # Step History To List Changes Made over time
 
+## Step 32 Minor changes
+
+Sources:
+
+- The modal should display the Trip data and offer the opportunity to edit trip, if wanted.
+- commented out the code that shows the Links Documentation and Repositorys in the sidebar.
+
+---
+
 ## Step 31 Main Bugfixes
 - Video Source:  
 - defined correct id's in TruckSeeder
