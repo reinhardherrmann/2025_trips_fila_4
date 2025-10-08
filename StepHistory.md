@@ -1,12 +1,22 @@
 # Step History To List Changes Made over time
 
+## Step 33 Add Possibility to upload pdf
+
+Sources: perplexity
+
+- install „Advanced Upload“-Plugin using command
+    - "composer require asmit/filament-upload" and "php artisan filament:assets"
+- Add Upload to CreateTrip
+- Add Fileupload to EditTrip
+- install pdf-viewer using command
+    - "composer require joaopaulolndev/filament-pdf-viewer" and "php artisan vendor:publish --tag="
+      filament-pdf-viewer-views""
+
+---
 ## Step 32 Minor changes
-
 Sources:
-
 - The modal should display the Trip data and offer the opportunity to edit trip, if wanted.
 - commented out the code that shows the Links Documentation and Repositorys in the sidebar.
-
 ---
 
 ## Step 31 Main Bugfixes

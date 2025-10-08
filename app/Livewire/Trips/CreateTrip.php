@@ -5,6 +5,8 @@ namespace App\Livewire\Trips;
 use App\Models\Address;
 use App\Models\Trip;
 use App\Models\Truck;
+use Asmit\FilamentUpload\Enums\PdfViewFit;
+use Asmit\FilamentUpload\Forms\Components\AdvancedFileUpload;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
@@ -351,6 +353,20 @@ class CreateTrip extends Component implements HasActions, HasSchemas
                                 ->label('Status')->label('Status')
                                 ->relationship('status', 'value')
                                 ->default(1)
+                        ]),
+                    Step::make('Tourenliste')
+                        ->schema([
+                            AdvancedFileUpload::make('image')
+                                ->label('Tourenliste hochladen')
+                                ->disk('public')
+                                ->directory('trips')
+                                ->pdfPreviewHeight(400)
+                                ->pdfDisplayPage(1)
+                                ->pdfToolbar(true)
+                                ->pdfZoomLevel(100)
+                                ->pdfFitType(PdfViewFit::FIT)
+                                ->pdfNavPanes(true)
+                                ->deletable(true),
                         ]),
                     Step::make('Störzeiten')
                         ->columns(2)

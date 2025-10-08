@@ -6,6 +6,8 @@ use App\Models\Address;
 use App\Models\Store;
 use App\Models\Trip;
 use App\Models\Truck;
+use Asmit\FilamentUpload\Enums\PdfViewFit;
+use Asmit\FilamentUpload\Forms\Components\AdvancedFileUpload;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
@@ -25,6 +27,7 @@ use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Contracts\HasSchemas;
 use Filament\Schemas\Schema;
 use Illuminate\Contracts\View\View;
+use Joaopaulolndev\FilamentPdfViewer\Forms\Components\PdfViewerField;
 use Livewire\Component;
 
 class EditTrip extends Component implements HasActions, HasSchemas
@@ -349,6 +352,26 @@ class EditTrip extends Component implements HasActions, HasSchemas
                                     ->label('Status')->label('Status')
                                     ->relationship('status', 'value')
                                     ->default(1)
+                            ]),
+                        Tab::make('Tourenliste')
+                            ->columns(5)
+                            ->schema([
+                                AdvancedFileUpload::make('image')
+                                    ->label('Tourenliste hochladen')
+                                    ->disk('public')
+                                    ->directory('trips')
+                                    ->pdfPreviewHeight(400)
+                                    ->pdfDisplayPage(1)
+                                    ->pdfToolbar(true)
+                                    ->pdfZoomLevel(100)
+                                    ->pdfFitType(PdfViewFit::FIT)
+                                    ->pdfNavPanes(true)
+                                    ->deletable(true),
+                                PdfViewerField::make('image')
+                                    ->label('Tourenliste')
+                                    ->minHeight('40svh')
+                                    ->columnSpanFull(3),
+
                             ]),
                         Tab::make('Störzeiten')
                             ->columns(2)
